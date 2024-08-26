@@ -2,10 +2,13 @@
 title: "Introduction to Data Science"
 subtitle: "Session 1: What is data science?"
 author: "Simon Munzert"
-institute: "Hertie School"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-24)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
-    css: [default,'simons-touch.css', metropolis, metropolis-fonts] 
+    includes:
+      after_body: "../add_hertie_logo.html"
+      in_header: "../my_header.html"
+    css: [default,'../simons-touch.css', metropolis, metropolis-fonts] 
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -65,7 +68,7 @@ library(fontawesome)
 
 ### Course
 
-`r fa('globe')` https://github.com/intro-to-data-science-23
+`r fa('globe')` https://github.com/intro-to-data-science-24
 
 Much of this course lives on GitHub. You will find lecture materials, code, assignments, and other people's presentations there. We also have Moodle, which is is for everything else.
 
@@ -145,7 +148,7 @@ What's your name? And would you share a fun fact about yourself?
 
 ## Who & how
 
-- This course is accompanied by labs administered by **Hiba Ahmad** and **Steve Kerr**.
+- This course is accompanied by labs administered by **Carmen Garro** and **Sebastian Ramirez Ruiz**.
 - The labs are mandatory (MDS) / optional (the rest). Please attend them in any case.
 - As with the regular classes, please stick to the lab you are assigned to.
 
@@ -163,10 +166,10 @@ What's your name? And would you share a fun fact about yourself?
 .pull-right-small-center[
 <div align="center">
 <br>
-<img src="pics/ahmad-circle.png" height=200>
+<img src="pics/carmen-circle.png" height=200>
 <br>
 <br>
-<img src="pics/kerr-circle.png" height=200>
+<img src="pics/sebastian-circle.png" height=200>
 </div>
 ]
 
@@ -216,62 +219,77 @@ name: whatisdatascience
 
 
 ---
+# What is data science?
 
-# A classic definition of data science
+.pull-left[
+## What is data science?
 
-<div align="center">
-<img src="pics/venn-orig-1.png" height=550>
+> "Data science is an interdisciplinary academic field that uses statistics, scientific computing, scientific methods, processes, algorithms and systems to extract or extrapolate knowledge and insights from potentially noisy, structured, or unstructured data." - [Wikipedia](https://en.wikipedia.org/wiki/Data_science)
+
+> "Data science is a concept to unify statistics, data analysis, informatics, and their related methods to understand and analyze actual phenomena with data." - [Chikio Hayashi](https://www.springer.com/book/9784431702085)
+
+Overall, there's **no consensus** - it is a buzzword after all. We're going to carry on with Conway's working definition.
+]
+
+.pull-right[
+## A working definition
+
+<div align="center"><br>
+<img src="pics/venn-orig-crop.png" height=400>
 </div>
 
----
-
-# A classic definition of data science
-
-<div align="center">
-<img src="pics/venn-orig-2.png" height=550>
-</div>
-
----
-
-# A classic definition of data science
-
-<div align="center">
-<img src="pics/venn-orig-3.png" height=550>
-</div>
-
----
-
-# A classic definition of data science
-
-<div align="center">
-<img src="pics/venn-orig-4.png" height=550>
-</div>
+`Source` [Drew Conway, 2010](https://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram) (adapted)
+]
 
 
 ---
+# Types of data-driven research and their role for policy
 
-# A classic definition of data science
+.pull-left-small2[
+## 1. Description
+- What is the state of the world?
+- What are the trends over time?
+- What are the differences between groups?
 
-<div align="center">
-<img src="pics/venn-orig-5.png" height=550>
-</div>
+## The value for policy-making
+- At the center of **monitoring**
+- "How many people consume misinformation online?"
+- "How many people are unemployed in a certain district?"
+- "How does the distribution of income vary across educational segments of the population?"
+]
 
----
+--
 
-# A classic definition of data science
+.pull-left-small2[
+## 2. Explanation
+- What is the effect of a policy?
+- Does the effect vary across groups?
+- What are the mechanisms behind the effect?
 
-<div align="center">
-<img src="pics/venn-orig-5-credit.png" height=550>
-</div>
+## The value for policy-making
+- At the center of **evaluation**
+- "Did the wage increase lead to a decrease in employment?"
+- "Did the campaign affect the exposure to misinformation differently across groups?"
+- "Why did the intervention not lead to the expected results?"
+]
+
+--
+
+.pull-left-small2[
+## 3. Prediction
+- What is the path of an indicator?
+- (When) will future events happen?
+- What class does this observation most likely belong to?
 
 
+## The value for policy-making
+- At the center of **forecasting** but also **targeting** and **measurement**
+- "Will there be conflict?"
+- "How many people will be unemployed in a certain district next year?"
+- "Which individuals are most likely to be affected by a policy?"
+]
 
----
-background-image: url("pics/vintage-pipeline.jpeg")
-background-size: contain
-background-color: #000000
 
-# The data science pipeline
 
 
 ---
@@ -280,7 +298,7 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
 - **Problem definition** predict, infer, describe
 - **Design** conceptualize, build data collection device
@@ -294,13 +312,13 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
 - **Problem definition** predict, infer, describe
 - **Design** conceptualize, build data collection device
 - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
 ]
 
@@ -317,13 +335,13 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    
@@ -343,13 +361,13 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    - **Explore**: visualize, describe, discover
@@ -371,13 +389,13 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    - **Explore**: visualize, describe, discover
@@ -401,19 +419,19 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    - **Explore**: visualize, describe, discover
    - **Model**: build, test, infer, predict
 
-**Dissemination**
+## Dissemination
 
   - **Communicate**: to the public, media, policymakers
   - **Publish**: journals/proceedings, blogs, software
@@ -436,19 +454,19 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    - **Explore**: visualize, describe, discover
    - **Model**: build, test, infer, predict
 
-**Dissemination**
+## Dissemination
 
   - **Communicate**: to the public, media, policymakers
   - **Publish**: journals/proceedings, blogs, software
@@ -473,19 +491,19 @@ background-color: #000000
 
 .pull-left[
 
-**Preparatory work**
+## Preparatory work
 
   - **Problem definition** predict, infer, describe
   - **Design** conceptualize, build data collection device
   - **Data collection** recruit, collect, monitor
 
-**Data operation**
+## Data operation
 
    - **Wrangle**: import, tidy, manipulate
    - **Explore**: visualize, describe, discover
    - **Model**: build, test, infer, predict
 
-**Dissemination**
+## Dissemination
 
   - **Communicate**: to the public, media, policymakers
   - **Publish**: journals/proceedings, blogs, software
@@ -503,6 +521,167 @@ background-color: #000000
 
 
 
+---
+class: inverse, center, middle
+name: science
+
+# (Data) science for public policy
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
+
+
+---
+# The MIT Billion Prices Project
+
+.pull-left[
+<div align="center">
+<img src="pics/billion-prices-0.png" height=500>
+</div>
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/billion-prices-1.png" height=500>
+</div>
+]
+
+<br>
+**See also:** [https://thebillionpricesproject.com/](https://thebillionpricesproject.com/) and [https://www.pricestats.com/](https://www.pricestats.com/)
+
+---
+# The MIT Billion Prices Project
+
+.pull-left[
+<div align="center">
+<img src="pics/billion-prices-0.png" height=500>
+</div>
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/billion-prices-2.png" height=500>
+</div>
+]
+
+<br>
+**See also:** [https://thebillionpricesproject.com/](https://thebillionpricesproject.com/) and [https://www.pricestats.com/](https://www.pricestats.com/)
+
+
+---
+# The COMPAS algorithm to predict criminals' recidivism
+
+.pull-left[
+## Background
+
+- Correctional Offender Management Profiling for Alternative Sanctions (COMPAS) is a decision support tool developed by Northpointe (now Equivant) used by U.S. courts to **assess the likelihood of recidivism**
+- Produced several scales (Pretrial release risk, General recidivism, Violent recidivism) based on factors such as age, criminal history, and substance abuse
+- The algorithm is proprietary and its inner workings are not public
+
+<br>
+
+`Source` [Practitioner's Guide to COMPAS Core](https://s3.documentcloud.org/documents/2840784/Practitioner-s-Guide-to-COMPAS-Core.pdf)
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/compas-practitioner-1.png" width=450>
+<img src="pics/compas-practitioner-2.png" width=450>
+<img src="pics/compas-practitioner-3.png" width=450>
+</div>
+]
+
+
+---
+# The COMPAS algorithm to predict criminals' recidivism
+
+.pull-left[
+## The ProPublica and other investigations
+
+- In 2016, ProPublica published an investigation showing that COMPAS was **biased against African Americans**
+- **Bias:** The algorithm was more likely for African Americans to wrongly predict that defendants would re-offend.
+- **Accuracy:** only 20% of people predicted to commit violent crimes actually went on to do so (in a later study estimated with 65%, still worse than a group of humans with little expertise)
+
+<br><br><br>
+`Source` [ProPublica 2016](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm)
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/machine-bias-compas.png" width=450>
+</div>
+]
+
+
+---
+# The COMPAS algorithm to predict criminals' recidivism
+
+.pull-left[
+## The ProPublica and other investigations
+
+- In 2016, ProPublica published an investigation showing that COMPAS was **biased against African Americans**
+- **Bias:** The algorithm was more likely for African Americans to wrongly predict that defendants would re-offend.
+- **Accuracy:** only 20% of people predicted to commit violent crimes actually went on to do so (in a later study estimated with 65%, still worse than a group of humans with little expertise)
+
+<br><br><br><br>
+
+`Source` [Dressel and Fair, 2018, Science Advances](https://www.science.org/doi/epdf/10.1126/sciadv.aao5580)
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/dressel-compas-1.png" width=500>
+<img src="pics/dressel-compas-2.png" width=385>
+</div>
+]
+
+
+---
+# The Meta US 2020 Election study
+
+.pull-left-center[
+<div align="center">
+<br><br>
+<img src="pics/facebook-us2020-2.png" width=500>
+</div>
+]
+
+.pull-right-center[
+<div align="center">
+<br><br>
+<img src="pics/facebook-us2020-3.png" width=500>
+</div>
+]
+
+---
+# The Meta US 2020 Election study
+
+.pull-left[
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+`Source` [Guess et al. 2023, Science](https://www.science.org/doi/epdf/10.1126/science.abp9364)
+]
+
+.pull-right[
+<div align="center">
+<img src="pics/facebook-us2020-guess-1.png" width=500>
+</div>
+]
+
+
+---
+# The Meta US 2020 Election study
+
+.pull-left-small[
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+`Source` [Guess et al. 2023, Science](https://www.science.org/doi/epdf/10.1126/science.abp9364)
+]
+
+.pull-right-wide[
+<div align="center">
+<img src="pics/facebook-us2020-guess-2.png" width=700>
+</div>
+]
+
+
 
 ---
 class: inverse, center, middle
@@ -518,7 +697,7 @@ name: preview
 
 <div align="center">
 <br>
-<img src="pics/ids-syllabus-2023.png" height=500>
+<img src="pics/ids-syllabus-2024.png" height=500>
 </div>
 
 
@@ -575,131 +754,6 @@ class: inverse, center, middle
 
 
 
-
----
-class: inverse, center, middle
-
-# Sneak preview <br> Applying data science to tackle social problems
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
----
-class: center
-background-color: #fff
-
-# Tracking the usage of a contact tracing app
-
-.pull-left-center[
-<div align="center">
-<img src="pics/nhb-screenshot.png" height=300>
-<br><br>
-<img src="pics/corona-warn-app-android-ios.jpeg" height=200>
-</div>
-]
-
-.pull-right-center[
-<div align="center">
-<img src="pics/cwa-experiment.png" height=250>
-<br>
-<img src="pics/cwa-timeline.png" height=260>
-</div>
-]
-
-
-
----
-class: center
-background-color: #fff
-
-# Reducing hate speech on social media
-
-.pull-left-center[
-<div align="center">
-<img src="pics/munger-1.png" height=500>
-</div>
-]
-
-.pull-right-center[
-<div align="center">
-<img src="pics/munger-2.png" height=250>
-<br>
-<img src="pics/munger-3.png" height=260>
-</div>
-]
-
-
----
-class: center
-background-color: #fff
-
-# Monitoring the effects of climate change on health
-
-.pull-left-center[
-<div align="center">
-<img src="pics/lancet-2020.png" height=300>
-<br><br>
-<img src="pics/lancet-2020-fig1.png" height=200>
-</div>
-]
-
-.pull-right-center[
-<div align="center">
-<img src="pics/clickstream_network_graph_health_climate_labels_2020.png" height=250>
-<br>
-<img src="pics/clickstream-views-2018-2020.png" height=260>
-</div>
-]
-
-
-
-
-
-
----
-class: inverse, center, middle
-
-# Sneak preview <br> Getting to know the limits of data
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
----
-
-# Calling bullsh*t when you see it
-
-.pull-left-vsmall[
-
-<br> 
-
-**Learn not to be fooled** by 
-- big data
-- garbage data
-- garbage models
-- weird samples
-- claims of generality
-- statistical significance
-- implausibly large effect sizes
-- highly precise forecasts
-- overfitted models
-
-And much more...
-]
-
-.pull-right-vwide[
-<br>
-<div align="center">
-<img src="pics/sc01.png" height=130> 
-<img src="pics/gigo.png" height=130>
-</br>
-<img src="pics/criminal-faces-2.png" height=130>
-<img src="pics/calling-bullshit-2.jpg" height=130>
-<img src="pics/survivorship-bias.png" height=130>
-</br>
-<img src="pics/cor-examples7.png" height=130>
-<img src="pics/overfitting.png" height=130>
-<img src="pics/nyt-opera.png" height=130>
-</div>
-]
 
 
 
@@ -956,10 +1010,10 @@ pop_df %>%
 --
 
 ### Homework assignments 
-- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/113288586-introduction-to-data-science-fall-2023).
+- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/113288608-introduction-to-data-science-fall-2024).
 - Each assignment is a mix of practical problems that are to be solved with R.
 - You are encouraged to collaborate, but everyone will hand in a separate solution.
-- There will be 5 assignments (one every ~2 weeks; see [overview on GitHub](https://github.com/intro-to-data-science-23/assignments)) and the 4 best will contribute to the final grade.
+- There will be 5 assignments (one every ~2 weeks; see [overview on GitHub](https://github.com/intro-to-data-science-24/assignments)) and the 4 best will contribute to the final grade.
 - You'll have one week to work on each assignment (deadline: Tuesdays at 9:30am).
 - You submit your solutions via GitHub.
 
@@ -1012,13 +1066,14 @@ pop_df %>%
 | 1 × hackathon project       | 30% |
 
 ### Workshop presentation (MDS students)
-- On October  30, 14-20h, we will flip roles and you will become instructor of a data science workshop session.
-- You, in groups of 2 students, will present a data science workflow tool (randomly [allocated](https://github.com/intro-to-data-science-23/workshop-presentations)).
+- On October  28, 14-20h, we will flip roles and you will become instructor of a data science workshop session.
+- You, in groups of 2 students, will present a data science workflow tool (randomly [allocated](https://github.com/intro-to-data-science-24/workshop-presentations)).
 - Your contribution will include:
   1. A lightning talk (recorded) where you briefly introduce and motivate the tool
   2. A hands-on session where you showcase the tool and provide practice material
 - Both the recorded talk and the materials will be graded.
-- Check out the materials from previous workshops online [`>2021<`](https://intro-to-data-science-21-workshop.github.io/) [`>2022<`](https://intro-to-data-science-22-workshop.github.io/)!
+- Check out the materials from previous workshops online [`>2021<`](https://intro-to-data-science-21-workshop.github.io/) [`>2022<`](https://intro-to-data-science-22-workshop.github.io/)
+[`>2023<`](https://intro-to-data-science-23-workshop.github.io/)!
 - **MPP/MIA students**: You will not give a talk, but have to actively participate in the workshop.
 
 
@@ -1034,9 +1089,9 @@ pop_df %>%
 | 1 × hackathon project       | 30% |
 
 ### Hackathon project
-- On December 4, 17-20h, there will be a hackathon hosted at Hertie.
+- On December 2, 13-16h, there will be a hackathon hosted at Hertie.
 - At the hackathon itself, we introduce the data and provide an environment that should facilitate you getting started with the project and form groups of 3-4 students.
-- Two weeks later, on December 18, the project instructions will be made available. You will then have 48 hours to submit your solutions.
+- Two weeks later, on December 16, the project instructions will be made available. You will then have 48 hours to submit your solutions.
 - The task is similar to the homework assignments but puts more emphasis on creative problem-solving using the tools and techniques you have learned in class.
 
 
@@ -1073,17 +1128,22 @@ pop_df %>%
 
 
 
-
 ---
 # Further reading
 
 <div align="center">
-<br><br><br>
-<img src="pics/bookofwhy.jpg" height=300>
-<img src="pics/everybodylies.jpg" height=300>
-<img src="pics/everythingisobvious.jpg" height=300>
-<img src="pics/calling-bullshit.jpeg" height=300>
-<img src="pics/wilkebook.jpeg" height=300>
+<img src="pics/manski-public-policy-uncertain.jpg" height=250>
+<img src="pics/bookofwhy.jpg" height=250>
+<img src="pics/everybodylies.jpg" height=250>
+<img src="pics/everythingisobvious.jpg" height=250>
+<img src="pics/calling-bullshit.jpeg" height=250>
+<img src="pics/wilkebook.jpeg" height=250><br>
+<img src="pics/bitbybitbook.jpg" height=250>
+<img src="pics/numbersrule.jpg" height=250>
+<img src="pics/numbersense.jpg" height=250>
+<img src="pics/rival-hypothesis-1.png" height=250>
+<img src="pics/art-of-statistics.jpg" height=250>
+<img src="pics/aisnakeoil.jpg" height=250>
 </div>
 
 
@@ -1091,19 +1151,24 @@ pop_df %>%
 # Further listening
 
 <div align="center">
+<br><br><br>
+<img src="pics/podcast-tech-away.png" height=150>
+<img src="pics/podcast-ai-breakdown.png" height=150>
+<img src="pics/podcast-beginners-guide.png" height=150>
+<img src="pics/podcast-govtech360.png" height=150>
+<img src="pics/podcast-hdsr.png" height=150>
+<img src="pics/podcast-data-skeptic.png" height=150>
+<img src="pics/podcast-more-or-less.jpeg" height=150>
 <br>
-<img src="pics/podcast-hdsr.png" height=200>
-<img src="pics/podcast-data-skeptic.png" height=200>
-<img src="pics/podcast-data-stories.png" height=200>
-<img src="pics/podcast-digital-analytics-power-hour.jpeg" height=200>
-<img src="pics/podcast-linear-digressions.png" height=200>
-<br>
-<img src="pics/podcast-not-so-standard-deviations.png" height=200>
-<img src="pics/podcast-oreilly-datashow.jpeg" height=200>
-<img src="pics/podcast-banana-data.jpeg" height=200>
-<img src="pics/podcast-stats-stories.png" height=200>
-<img src="pics/podcast-talking-machines.png" height=200>
+<img src="pics/podcast-linear-digressions.png" height=150>
+<img src="pics/podcast-not-so-standard-deviations.png" height=150>
+<img src="pics/podcast-digital-analytics-power-hour.jpeg" height=150>
+<img src="pics/podcast-oreilly-datashow.jpeg" height=150>
+<img src="pics/podcast-banana-data.jpeg" height=150>
+<img src="pics/podcast-stats-stories.png" height=150>
+<img src="pics/podcast-talking-machines.png" height=150>
 </div>
+
 
 
 ---
@@ -1122,69 +1187,6 @@ pop_df %>%
 
 
 ---
-# Getting started for the course
-
-### Software
-
-1. Download [R](https://cran.rstudio.com/).
-
-2. Download [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
-
-3. Download [Git](https://git-scm.com/downloads).
-
-4. Create an account on [GitHub](https://github.com/) and register for a student/educator [discount](https://education.github.com/discount_requests/new). You will soon receive an invitation to the course organization on GitHub, as well as [GitHub classroom](https://classroom.github.com), which is how we'll disseminate and submit assignments, receive feedback and grading, etc. 
-  
---
-
-### OS extras
-
-- **Windows:** Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/). You might also want to install [Chocolately](https://chocolatey.org/).
-- **Mac:** Install [Homebrew](https://brew.sh/).
-- **Linux:** None (you should be good to go).
-
-
----
-# Checklist
-
-☑ Do you have the most recent version of R?
-  ```{r, cache=FALSE}
-  version$version.string
-  ```
-
-
-☑ Do you have the most recent version of RStudio? (The [preview version](https://www.rstudio.com/products/rstudio/download/preview/) is fine.)
-  ```{r eval=FALSE}
-  RStudio.Version()$version
-  ## Requires an interactive session but should return something like "[1] ‘1.4.1100’"
-  ```
-
-☑ Have you updated all of your R packages? 
-  ```{r eval=FALSE}
-  update.packages(ask = FALSE, checkBuilt = TRUE)
-  ```
-  
----
-# Checklist (cont.)
-
-Open up the [shell](http://happygitwithr.com/shell.html#shell).
-- Windows users, make sure that you installed a Bash-compatible version of the shell. If you installed [Git for Windows](https://gitforwindows.org), then you should be good to go.
-
-☑ Which version of Git have you installed?
-  ```{bash, cache=FALSE}
-  git --version
-  ```
-
-☑ Did you introduce yourself to Git? (Substitute in your details.)
-  ```{bash, eval=FALSE}
-  git config --global user.name 'Simon Munzert'
-  git config --global user.email 'munzert@hertie-school.org'
-  git config --global --list
-  ```
-
-☑ Did you register an account in GitHub? 
-
-
----
 # This semester
 
 <div align="center">
@@ -1200,7 +1202,7 @@ Open up the [shell](http://happygitwithr.com/shell.html#shell).
 
 ### The first lab session
 
-Get to know Hiba, Steve, R, and RStudio, four of your best friends for the next months!
+Get to know Carmen, Sebastian, R, and RStudio, four of your best friends for the next months!
 
 ### Next lecture
 

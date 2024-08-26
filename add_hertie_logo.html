@@ -1,0 +1,29 @@
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
