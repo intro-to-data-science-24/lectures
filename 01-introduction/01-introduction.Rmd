@@ -205,7 +205,7 @@ What's your name? And would you share a fun fact about yourself?
 
 2. [What is data science?](#whatisdatascience)
 
-3. [Sneak preview](#preview)
+3. [(Data) science for public policy](#datasciencepublicpolicy)
 
 4. [Class logistics](#logistics)
 
@@ -523,7 +523,7 @@ Overall, there's **no consensus** - it is a buzzword after all. We're going to c
 
 ---
 class: inverse, center, middle
-name: science
+name: datasciencepublicpolicy
 
 # (Data) science for public policy
 
@@ -683,12 +683,16 @@ name: science
 
 
 
+
+
+
 ---
 class: inverse, center, middle
-name: preview
+name: logistics
 
-# Sneak preview
+# Class logistics
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
+
 
 
 ---
@@ -701,135 +705,6 @@ name: preview
 </div>
 
 
-
----
-class: inverse, center, middle
-
-# Sneak preview <br> Learning to love a programming environment
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
----
-class: center
-background-color: #fff
-
-# The tidyverse
-
-<div align="center">
-<br>
-<img src="pics/hex-tidyverse.gif" height=500>
-</div>
-
-
-
-
----
-class: inverse, center, middle
-
-# Sneak preview <br> Collecting web data at scale
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
----
-# Scraping the web for social research
-
-
-.pull-left-center[
-<div align="center">
-<img src="pics/pap1.png" height=300>
-<br><br>
-<img src="pics/pap4.png" height=200>
-</div>
-]
-
-.pull-right-center[
-<div align="center">
-<img src="pics/cld-paper.png" height=250>
-<br>
-<img src="pics/leakingnetworks.png" height=260>
-</div>
-]
-
-
-
-
-
-
-
----
-class: inverse, center, middle
-
-# Sneak preview <br> Reflecting everyday ethics in data science
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
----
-class: center
-background-image: url("pics/clickworker.png")
-
-# How do I pay clickworkers fairly?
-
-
----
-class: center
-background-image: url("pics/webscraping2.jpeg")
-background-size: contain
-
-# How do I respect intellectual property?
-
----
-class: center
-background-image: url("pics/google-streetview.webp")
-background-size: contain
-background-color: #000000
-
-# How do I protect the privacy of my research subjects?
-
----
-class: center
-background-image: url("pics/hate-online.jpeg")
-background-size: contain
-background-color: #000000
-
-# How do I protect the safety of my research subjects?
-
----
-class: center
-background-image: url("pics/xkcd.png")
-background-size: contain
-background-color: #000000
-
-# How do I ensure statistical, measurement validity, etc.?
-
-
----
-class: center
-background-image: url("pics/versioncontrol.jpeg")
-background-size: contain
-background-color: #000000
-
-# How do I ensure an open science workflow?
-
-
----
-class: center
-background-image: url("pics/meeting-presentation.png")
-background-size: contain
-background-color: #000000
-
-# How do I communicate results honestly?
-
-
-
----
-class: inverse, center, middle
-name: logistics
-
-# Class logistics
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
 
 ---
@@ -884,6 +759,22 @@ background-color: #000000
 # You at the end of the course
 
 
+
+
+
+---
+class: center
+background-color: #fff
+
+# Why R?
+
+<div align="center">
+<br>
+<img src="pics/hex-tidyverse.gif" height=500>
+</div>
+
+
+
 ---
 
 # Why R and RStudio?
@@ -920,6 +811,7 @@ programming languages and APIs.
 pop_df = 
   data.frame(
   lang = c("Python", "SQL", "R", "SAS", "Matlab", "Julia", "SPSS", "Stata"),
+  #n_jobs = c(6850, 6136, 4384, 551, 537, 249, 110, 60), # 2024/09/01 -> not possible anymore - they don't provide precise numbers!
   n_jobs = c(6850, 6136, 4384, 551, 537, 249, 110, 60), # 2023/09/01
   #n_jobs = c(12203, 10291, 6812, 1005, 838, 474, 296, 67), # 2022/09/03
   #n_jobs = c(8150, 7264, 3484, 950, 687, 270, 74), # 2021/08/27
@@ -961,7 +853,6 @@ pop_df %>%
 
 
 
-
 ---
 # Core (and optional) readings
 
@@ -972,6 +863,16 @@ pop_df %>%
 <img src="pics/rpackages.jpeg" height=300>
 <img src="pics/bitbybit.png" height=300>
 <img src="pics/datasciencekelleher.jpeg" height=300>
+</div>
+
+
+
+---
+# This semester
+
+<div align="center">
+<br>
+<img src="pics/wickham-shitty-code.jpeg" height=400>
 </div>
 
 
@@ -1185,14 +1086,6 @@ pop_df %>%
 
 
 
-
----
-# This semester
-
-<div align="center">
-<br>
-<img src="pics/wickham-shitty-code.jpeg" height=400>
-</div>
 
 
 ---
