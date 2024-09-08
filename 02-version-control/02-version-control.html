@@ -8,7 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -24,7 +26,7 @@ class: center, middle, inverse, title-slide
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -267,7 +269,7 @@ For R projects
 - RStudio creates a "table of contents" when you name your code chunks as follows (`#` followed by title and `---`):
 
 
-```r
+``` r
 R&gt; # Import data --------------
 R&gt; 
 R&gt; dat &lt;- read_csv("dat.csv")
@@ -290,7 +292,7 @@ R&gt; dat &lt;- read_csv("dat.csv")
   - separate coding for the record and experimental coding.
 - But there's limited value in teaching you all that upfront.
 - The truth is: You'll likely refine your own workflow over time. I just saved you some initial pain (hopefully).
-- Do check out other people's experiences and opinions, e.g.,  [here](https://www.r-bloggers.com/2018/08/structuring-r-projects/) or [here](https://chrisvoncsefalvay.com/2018/08/09/structuring-r-projects/) or [here](https://kdestasio.github.io/post/r_best_practices/).
+- Do check out other people's experiences and opinions, e.g.,  [here](https://www.r-bloggers.com/2018/08/structuring-r-projects/) or  [here](https://kdestasio.github.io/post/r_best_practices/).
 
 ]
 
@@ -364,7 +366,7 @@ name: git
 - There is a learning curve, but it's worth it.
 - Being familiar with Git is taken for granted when you interact with other data scientists.
 - It is by far [not the only version control software](https://en.wikipedia.org/wiki/Comparison_of_version-control_software), but certainly the most popular one.
-- According to [StackOverflow's 2021 Developer Survey](https://insights.stackoverflow.com/survey/2021#most-popular-technologies-tools-tech), more than 93% of respondents report to use Git - more than any other tool.
+- According to [StackOverflow's 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-version-control), more than 93% of respondents report to use Git - more than any other tool.
 ]
 
 --
@@ -398,7 +400,7 @@ name: git
 - Also, it's pronounced [ɡɪt], not [d͡ʒɪt].
 
 **How to interact with Git?**
-- There are many [Git GUIs](https://en.wikipedia.org/wiki/Comparison_of_Git_GUIs), giving you the option to use git without the shell (often with reduced functionality). A popular choice is [GitHub Desktop](https://desktop.github.com/), but we will mainly use the [Git integration into the RStudio IDE](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN).
+- There are many [Git GUIs](https://git-scm.com/downloads/guis/), giving you the option to use git without the shell (often with reduced functionality). A popular choice is [GitHub Desktop](https://desktop.github.com/), but we will mainly use the [Git integration into the RStudio IDE](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html).
 ]
 
 .pull-right-small-center[
@@ -430,7 +432,7 @@ name: git
 
 **Some interesting facts**
 - GitHub's mascot is "[Octocat](https://github.com/octocat)", a human-cat-octopus hybrid with five arms. 
-- There are [56m+ developers on Github](https://octoverse.github.com/), with 60m+ new repositories created in 2020 alone.
+- There are [100m+ developers on Github](https://github.blog/news-insights/research/the-state-of-open-source-and-ai/), with 98m+ new repositories created in 2023 alone.
 - Part of GitHub's history are controversies around issues like harassment allegations or incidences of censorship.
 ]
 
@@ -455,7 +457,7 @@ name: git
 
 - Data science involves product building, collaboration, transparency. GH helps with all that.
 - Journals have increasingly strict requirements regarding reproducibility and access. GH makes this easy (DOI integration, off-the-shelf licenses, etc.).
-- I host most of the code and data for my [papers](https://simonmunzert.github.io/publications.html) on GH. My [website](https://simonmunzert.github.io/) lives there. And this [course](https://github.com/intro-to-data-science-23) does, too.
+- I host most of the code and data for my [papers](https://simonmunzert.github.io/publications.html) on GH. My [website](https://simonmunzert.github.io/) lives there. And this [course](https://github.com/intro-to-data-science-24) does, too.
 ]
 
 .pull-right-center[
@@ -513,7 +515,7 @@ Again, Git is an independent piece of software. You need to have it installed on
 Chances are that that's already the case. Here's how you can check using the command line:
 
 
-```bash
+``` bash
 $ which git
 ```
 
@@ -524,18 +526,18 @@ $ which git
 And here's how you can check the version:
 
 
-```bash
+``` bash
 $ git --version
 ```
 
 ```
-## git version 2.37.1 (Apple Git-137.1)
+## git version 2.39.3 (Apple Git-145)
 ```
 
 If you want to install (or update) Git on your Mac/Linux machine, I recommend using [Homebrew](https://brew.sh/), "the missing package manager for macOS (or Linux)":
 
 
-```bash
+``` bash
 $ brew install git
 ```
 
@@ -551,21 +553,21 @@ This is particularly important when you work with Git but without the GitHub ove
 Have you already introduced yourself to Git? Find it out:
 
 
-```bash
+``` bash
 $ git config --list
 ```
 
 Still have to introduce yourself? To that end, we set our user name and email address like this:
 
 
-```bash
+``` bash
 $ git config --global user.name 'simonmunzert'
 $ git config --global user.email 'simon.munzert@example.com'
 ```
 
 The user name can be (but does not have to be) your GitHub user name. The email address should definitely be the one associated with your GitHub account.
 
-Check out [these setup instructions](https://swcarpentry.github.io/git-novice/02-setup.html) from [Software Carpentry](https://software-carpentry.org/about/) to learn about more configuration options.
+Check out [these setup instructions](https://swcarpentry.github.io/git-novice/02-setup.html) from [Software Carpentry](https://software-carpentry.org/) to learn about more configuration options.
 
 
 ---
@@ -726,7 +728,7 @@ name: branches
 ### Branches are cool.
 - Think of your repo as a growing tree.
 - Branches allow you to take a snapshot of your existing repo and try out a whole new idea *without affecting* your main (formerly "master") branch.
-- Only once you (and your collaborators) are 100% satisfied, would you merge it back into the master branch.&lt;sup&gt;1&lt;/sup&gt;
+- Only once you (and your collaborators) are 100% satisfied, would you merge it back into the main branch.&lt;sup&gt;1&lt;/sup&gt;
   - This is how most new features in modern software and apps are developed.
   - It is also how bugs are caught and fixed.
   - But researchers can easily use it to try out new ideas and analysis (e.g. robustness checks, revisions, etc.).
@@ -761,7 +763,7 @@ You have two options:
 
 ### 1. Locally
 - Commit your final changes to the new branch (say we call it "new-idea").
-- Switch back to the master branch: `$ git checkout master`
+- Switch back to the main branch: `$ git checkout main`
 - Merge in the new-idea branch changes: `$ git merge new-idea`
 - Delete the new-idea branch (optional): `$ git branch -d new-idea`
   
@@ -1212,7 +1214,7 @@ name: other
 - A `.gitignore` file tells Git what to ignore.
 - This is especially useful if you want to exclude whole folders or a class of files (e.g. based on size or type).
 - Proprietary data files should be ignored from the beginning if you intend to make a repo public at some point.
-- Very large individual files (&gt;100 MB) exceed GitHub's maximum allowable size and should be ignored regardless. See &lt;a href="https://help.github.com/articles/working-with-large-files/" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://help.github.com/articles/versioning-large-files/" target=_"blank"&gt;here&lt;/a&gt;.
+- Very large individual files (&gt;100 MB) exceed GitHub's maximum allowable size and should be ignored regardless. See &lt;a href="https://help.github.com/articles/working-with-large-files/" target="_blank"&gt;here&lt;/a&gt;.
 ]
 
 .pull-right-small-center[
@@ -1261,7 +1263,7 @@ name: other
 ### How to deal with issues?
 
 - Before filing an issue, you should check the list of open (and maybe also closed) issues.
-- If you spot any problems with these lecture notes, feel free to file an issue [here](https://github.com/intro-to-data-science-23/lectures/issues)!
+- If you spot any problems with these lecture notes, feel free to file an issue [here](https://github.com/intro-to-data-science-24/lectures/issues)!
   
 
   
@@ -1362,12 +1364,12 @@ If you haven't done so already, now is a good time to clone/fork the course mate
 
 ### The first assignment
 
-Now that you've learned the necessary basics, Assignment 1 is up on GitHub Classroom. Reminder: Also check out Assignment 0 to practice how to work on and submit assignments!
+Now that you've learned the necessary basics, Assignment 1 is up on GitHub. Reminder: Also check out Assignment 0 to practice how to work on and submit assignments!
 
 
 ### Next lecture
 
-Data science ethics!
+Programming and debugging!
 
 
     </textarea>
@@ -1475,6 +1477,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
