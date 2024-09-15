@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 3: Functions and debugging"
+subtitle: "Session 3: Functions, iteration, and debugging"
 author: "Simon Munzert"
 institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-24)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -104,7 +104,7 @@ We will now learn the basics of creating your own functions and functional progr
 ---
 # Functional programming
 
-R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](http://adv-r.had.co.nz/Functional-programming.html):
+R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](https://adv-r.hadley.nz/fp.html):
 
 > This means that it provides many tools for the creation and manipulation of functions. In particular, R has what’s known as first-class functions. You can do anything with functions that you can do with vectors: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
 
@@ -112,7 +112,7 @@ R encourages you to use and build your own functions to solve problems. Often, t
 
 There is much more to learn about functions and [functional programming](https://en.wikipedia.org/wiki/Functional_programming). Useful resources include:
 
-- The chapter on functions in [R for Data Science](https://r4ds.had.co.nz/functions.html).
+- The chapter on functions in [R for Data Science](https://r4ds.hadley.nz/functions.html).
 - The section on functional programming in [Advanced R](https://adv-r.hadley.nz/fp.html).
 - The [R packages](https://r-pkgs.org/) book. In a way, bundling functions in a package is sometimes the next logical step.
 
@@ -122,7 +122,7 @@ There is much more to learn about functions and [functional programming](https:/
 
 ### Why creating functions?
 
-That's a legit question. There are 18,000+ **packages** on CRAN (and many, many more on GitHub and other repositories) containing zillions of functions. Why should you create yet another one?
+That's a legit question. There are 21,000+ **packages** on [CRAN](https://cran.r-project.org/) (and many, many more on GitHub and other repositories) containing zillions of functions. Why should you create yet another one?
 - Every data science project is unique. There are problems only you have to solve. 
 - For problems that are repetitive, you'll quickly look for options to automate the task.
 - Functions are a great way to automate.
@@ -264,7 +264,7 @@ fahrenheit_to_celsius <- function(temp_F) {
 }
 ```
 
-.footnote[<sup>2</sup> Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
+.footnote[<sup>2</sup> Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R.html).]
 
 ]
 
@@ -756,7 +756,7 @@ Arguments:
 .pull-left-wide[
 Not every function you plan to write is unique, nor is every problem you want to solve functionally. 
 
-ChatGPT and other AI-based coding tools can help you a lot in finding functional solutions you can describe but not verbalize (yet). 
+ChatGPT, GitHub Copilot and other AI-based coding tools can help you a lot in finding functional solutions you can describe but not verbalize (yet). 
 
 I encourage you to use AI for this purpose, but be aware of the necessity to (a) debug and (b) assign credit where due.
 
@@ -806,8 +806,60 @@ name: iteration
 
 - A simple approach is to copy-and-paste code with minor modifications (→ "[duplicate code](https://en.wikipedia.org/wiki/Duplicate_code)", → "[copy-and-paste programming](https://en.wikipedia.org/wiki/Copy-and-paste_programming)"). This is lazy, error-prone, not very efficient, and violates the "[Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)" (DRY) principle. 
 - In R, [vectorization](https://adv-r.hadley.nz/perf-improve.html#vectorise), that is applying a function to every element of a vector at once, already does a good share of iteration for us.
-- `for()` [loops](https://r4ds.had.co.nz/iteration.html) are intuitive and straightforward to build, but sometimes not very efficient.
+- `for()` [loops](https://r4ds.hadley.nz/iteration.html) are intuitive and straightforward to build, but sometimes not very efficient.
 - Finally, we learned about functions. Now, we learn how to unleash their power by applying them to anything we interact with in R at scale.
+
+
+---
+# A simple example
+
+.pull-left[
+
+## Task
+
+Say we want to double each element in a numeric vector, `x = c(1, 2, 3, 4, 5)`. Here are some different approaches to achieve this:
+
+### 1. Manually (sometimes: copying and pasting code)
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+x_doubled <- c(2, 4, 6, 8, 10)
+```
+
+### 2. Vectorization
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+x_doubled <- x * 2
+x_doubled
+```
+]
+
+--
+
+.pull-right[
+### 3. `for()` loop
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+x_doubled <- numeric(length(x))
+for (i in seq_along(x)) {
+  x_doubled[i] <- x[i] * 2
+}
+x_doubled
+```
+
+### 4. Using `purrr`
+
+```{r}
+library(purrr)
+x <- c(1, 2, 3, 4, 5)
+x_doubled <- map_dbl(x, ~ .x * 2)
+x_doubled
+```
+]
+
+
 
 
 ---
@@ -889,6 +941,123 @@ The `purrr` function set is quite comprehensive. Be sure to check out the [cheat
 <div align="center">
 <img src="pics/purrr-cheatsheet-2.png" height=550>
 </div>
+
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+```{r}
+# Load the starwars dataset
+data(starwars)
+
+# Custom function for calculations
+calc_stats <- function(df) {
+  df %>%
+    summarise(
+      height_mean = mean(height, na.rm = TRUE),
+      height_sd = sd(height, na.rm = TRUE),
+      mass_mean = mean(mass, na.rm = TRUE),
+      mass_sd = sd(mass, na.rm = TRUE)
+    )
+}
+```
+]
+
+--
+
+.pull-right[
+```{r}
+# Group by species and apply the custom function
+species_stats <- starwars %>%
+  group_by(species) %>%
+  nest() # Nesting the data
+species_stats
+```
+]
+
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+```{r}
+# Load the starwars dataset
+data(starwars)
+
+# Custom function for calculations
+calc_stats <- function(df) {
+  df %>%
+    summarise(
+      height_mean = mean(height, na.rm = TRUE),
+      height_sd = sd(height, na.rm = TRUE),
+      mass_mean = mean(mass, na.rm = TRUE),
+      mass_sd = sd(mass, na.rm = TRUE)
+    )
+}
+```
+]
+
+.pull-right[
+```{r}
+# Group by species and apply the custom function
+species_stats <- starwars %>%
+  group_by(species) %>%
+  nest() %>% # Nesting the data
+  # purrr magic
+  mutate(stats = map(data, calc_stats))
+species_stats
+```
+]
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+```{r}
+# Load the starwars dataset
+data(starwars)
+
+# Custom function for calculations
+calc_stats <- function(df) {
+  df %>%
+    summarise(
+      height_mean = mean(height, na.rm = TRUE),
+      height_sd = sd(height, na.rm = TRUE),
+      mass_mean = mean(mass, na.rm = TRUE),
+      mass_sd = sd(mass, na.rm = TRUE)
+    )
+}
+```
+]
+
+.pull-right[
+```{r}
+# Group by species and apply the custom function
+species_stats <- starwars %>%
+  group_by(species) %>%
+  nest() %>% # Nesting the data
+  # purrr magic
+  mutate(stats = map(data, calc_stats)) %>% 
+  select(species, stats) %>% # Select columns
+  unnest(stats) # Unnest the data
+species_stats
+```
+]
+
+
 
 
 ---
@@ -1400,12 +1569,10 @@ undebug(stats::lm) #<<
 
 ### Assignment
 
-Assignment 2 is online! You have a bit more than a week to work on it - final upload deadline is Oct 4.
+Assignment 2 is online! You have a bit more than a week to work on it - final upload deadline is Sep 24, 9:30am CET.
 
 ### Next lecture
 
 **Relational databases and SQL.** Buckle up and bring coffee, because it'll get both exciting and tedious at the same time.
-
-
 
 

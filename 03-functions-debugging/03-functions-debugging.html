@@ -8,7 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -18,13 +20,13 @@ class: center, middle, inverse, title-slide
 # Introduction to Data Science
 ]
 .subtitle[
-## Session 4: Functions and debugging
+## Session 3: Functions, iteration, and debugging
 ]
 .author[
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -90,7 +92,7 @@ We will now learn the basics of creating your own functions and functional progr
 ---
 # Functional programming
 
-R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](http://adv-r.had.co.nz/Functional-programming.html):
+R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](https://adv-r.hadley.nz/fp.html):
 
 &gt; This means that it provides many tools for the creation and manipulation of functions. In particular, R has what’s known as first-class functions. You can do anything with functions that you can do with vectors: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
 
@@ -98,7 +100,7 @@ R encourages you to use and build your own functions to solve problems. Often, t
 
 There is much more to learn about functions and [functional programming](https://en.wikipedia.org/wiki/Functional_programming). Useful resources include:
 
-- The chapter on functions in [R for Data Science](https://r4ds.had.co.nz/functions.html).
+- The chapter on functions in [R for Data Science](https://r4ds.hadley.nz/functions.html).
 - The section on functional programming in [Advanced R](https://adv-r.hadley.nz/fp.html).
 - The [R packages](https://r-pkgs.org/) book. In a way, bundling functions in a package is sometimes the next logical step.
 
@@ -108,7 +110,7 @@ There is much more to learn about functions and [functional programming](https:/
 
 ### Why creating functions?
 
-That's a legit question. There are 18,000+ **packages** on CRAN (and many, many more on GitHub and other repositories) containing zillions of functions. Why should you create yet another one?
+That's a legit question. There are 21,000+ **packages** on [CRAN](https://cran.r-project.org/) (and many, many more on GitHub and other repositories) containing zillions of functions. Why should you create yet another one?
 - Every data science project is unique. There are problems only you have to solve. 
 - For problems that are repetitive, you'll quickly look for options to automate the task.
 - Functions are a great way to automate.
@@ -133,7 +135,7 @@ That's a legit question. There are 18,000+ **packages** on CRAN (and many, many 
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS
 +     return(VALUE)
@@ -151,7 +153,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 *R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS
 +     return(VALUE)
@@ -172,7 +174,7 @@ Writing your own function in R is easy with the `function()` function&lt;sup&gt;
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 *+     OPERATIONS
 +     return(VALUE)
@@ -194,7 +196,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 *+     return(VALUE)
@@ -216,7 +218,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -236,7 +238,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -250,14 +252,14 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
 
 
-```r
+``` r
 R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 +   temp_C &lt;- (temp_F - 32) * (5/9)
 +   return(temp_C)
 + }
 ```
 
-.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
+.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R.html).]
 
 ]
 
@@ -269,7 +271,7 @@ R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -283,7 +285,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
 
 
-```r
+``` r
 *R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 +   temp_C &lt;- (temp_F - 32) * (5/9)
 +   return(temp_C)
@@ -305,7 +307,7 @@ Let's try it out with a simple example function - one that converts temperatures
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -319,7 +321,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
 
 
-```r
+``` r
 R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 *+   temp_C &lt;- (temp_F - 32) * (5/9)
 +   return(temp_C)
@@ -342,7 +344,7 @@ R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -356,7 +358,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
 
 
-```r
+``` r
 R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 +   temp_C &lt;- (temp_F - 32) * (5/9)
 *+   return(temp_C)
@@ -378,7 +380,7 @@ R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
 
 
-```r
+``` r
 R&gt; my_func &lt;- function(ARGUMENTS) {
 +     OPERATIONS 
 +     return(VALUE) 
@@ -392,7 +394,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):
 
 
-```r
+``` r
 R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
 +   temp_C &lt;- (temp_F - 32) * (5/9)
 +   return(temp_C)
@@ -406,7 +408,7 @@ Now, let's try out the function:
 --
 
 
-```r
+``` r
 R&gt; fahrenheit_to_celsius(451)
 ```
 
@@ -432,7 +434,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 +   function(temp, from = "f") {
 +   if (!(from %in% c("f", "c"))){ 
@@ -469,7 +471,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 *+   function(temp, from = "f") {
 +   if (!(from %in% c("f", "c"))){ 
@@ -510,7 +512,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 +   function(temp, from = "f") { 
 *+   if (!(from %in% c("f", "c"))){
@@ -551,7 +553,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 +   function(temp, from = "f") { 
 +   if (!(from %in% c("f", "c"))){ 
@@ -591,7 +593,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 +   function(temp, from = "f") { 
 +   if (!(from %in% c("f", "c"))){ 
@@ -632,7 +634,7 @@ Let's make the function a bit more complex, but also more fun.
 .pull-right[
 
 
-```r
+``` r
 R&gt; temp_convert &lt;- 
 +   function(temp, from = "f") { 
 +   if (!(from %in% c("f", "c"))){ 
@@ -667,7 +669,7 @@ In R, functions are objects in their own right. They aren’t automatically boun
 **Examples:**
 
 
-```r
+``` r
 R&gt; map(char_vec, function(x) paste(x, collapse = "|")) 
 R&gt; integrate(function(x) sin(x) ^ 2, 0, pi)
 ```
@@ -687,7 +689,7 @@ As of `R 4.1.0`, there's a new shorthand syntax for anonymous functions: `\(x)`.
 **Example:**
 
 
-```r
+``` r
 R&gt; (function (x) {paste(x, 'is awesome!')})('Data science') # old syntax
 ```
 
@@ -695,7 +697,7 @@ R&gt; (function (x) {paste(x, 'is awesome!')})('Data science') # old syntax
    [1] "Data science is awesome!"
 ```
 
-```r
+``` r
 R&gt; (\(x) {paste(x, 'is awesome!')})('Data science') # new syntax
 ```
 
@@ -725,7 +727,7 @@ As of `R 4.1.0`, there's a new shorthand syntax for anonymous functions: `\(x)`.
 **Example:**
 
 
-```r
+``` r
 R&gt; mtcars |&gt; subset(cyl == 4) |&gt; (\(x) lm(mpg ~ disp, data = x))()
 ```
 
@@ -744,7 +746,7 @@ A common application is to use `...` to pass those additional arguments on to an
 **Toy example:**
 
 
-```r
+``` r
 R&gt; my_list_generator &lt;- function(y, z) {
 +   list(y = y, z = z)
 + }
@@ -769,7 +771,7 @@ R&gt; str(my_list_generator_2(x = 1, y = 2, z = 3))
 **Real-life example:**
 
 
-```r
+``` r
 R&gt; map(.x, .f, ...)
 R&gt; map(mtcars, mean, na.rm = TRUE)
 ```
@@ -790,7 +792,7 @@ Arguments:
 .pull-left-wide[
 Not every function you plan to write is unique, nor is every problem you want to solve functionally. 
 
-ChatGPT and other AI-based coding tools can help you a lot in finding functional solutions you can describe but not verbalize (yet). 
+ChatGPT, GitHub Copilot and other AI-based coding tools can help you a lot in finding functional solutions you can describe but not verbalize (yet). 
 
 I encourage you to use AI for this purpose, but be aware of the necessity to (a) debug and (b) assign credit where due.
 
@@ -840,8 +842,76 @@ name: iteration
 
 - A simple approach is to copy-and-paste code with minor modifications (→ "[duplicate code](https://en.wikipedia.org/wiki/Duplicate_code)", → "[copy-and-paste programming](https://en.wikipedia.org/wiki/Copy-and-paste_programming)"). This is lazy, error-prone, not very efficient, and violates the "[Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)" (DRY) principle. 
 - In R, [vectorization](https://adv-r.hadley.nz/perf-improve.html#vectorise), that is applying a function to every element of a vector at once, already does a good share of iteration for us.
-- `for()` [loops](https://r4ds.had.co.nz/iteration.html) are intuitive and straightforward to build, but sometimes not very efficient.
+- `for()` [loops](https://r4ds.hadley.nz/iteration.html) are intuitive and straightforward to build, but sometimes not very efficient.
 - Finally, we learned about functions. Now, we learn how to unleash their power by applying them to anything we interact with in R at scale.
+
+
+---
+# A simple example
+
+.pull-left[
+
+## Task
+
+Say we want to double each element in a numeric vector, `x = c(1, 2, 3, 4, 5)`. Here are some different approaches to achieve this:
+
+### 1. Manually (sometimes: copying and pasting code)
+
+
+``` r
+R&gt; x &lt;- c(1, 2, 3, 4, 5)
+R&gt; x_doubled &lt;- c(2, 4, 6, 8, 10)
+```
+
+### 2. Vectorization
+
+
+``` r
+R&gt; x &lt;- c(1, 2, 3, 4, 5)
+R&gt; x_doubled &lt;- x * 2
+R&gt; x_doubled
+```
+
+```
+   [1]  2  4  6  8 10
+```
+]
+
+--
+
+.pull-right[
+### 3. `for()` loop
+
+
+``` r
+R&gt; x &lt;- c(1, 2, 3, 4, 5)
+R&gt; x_doubled &lt;- numeric(length(x))
+R&gt; for (i in seq_along(x)) {
++   x_doubled[i] &lt;- x[i] * 2
++ }
+R&gt; x_doubled
+```
+
+```
+   [1]  2  4  6  8 10
+```
+
+### 4. Using `purrr`
+
+
+``` r
+R&gt; library(purrr)
+R&gt; x &lt;- c(1, 2, 3, 4, 5)
+R&gt; x_doubled &lt;- map_dbl(x, ~ .x * 2)
+R&gt; x_doubled
+```
+
+```
+   [1]  2  4  6  8 10
+```
+]
+
+
 
 
 ---
@@ -887,7 +957,7 @@ We use it to apply a function `.f` to each piece in `.x`. Additional arguments t
 For instance, if we want to identify the object class of every column of a data.frame, we can write:
 
 
-```r
+``` r
 R&gt; map(starwars, class)
 ```
 
@@ -945,7 +1015,7 @@ By default, `map()` returns a list. But we can also use other `map*()` functions
 Going back to the previous example, we can also use `map_chr()`, which returns a character vector:
 
 
-```r
+``` r
 R&gt; map_chr(starwars, class)
 ```
 
@@ -978,6 +1048,183 @@ The `purrr` function set is quite comprehensive. Be sure to check out the [cheat
 &lt;div align="center"&gt;
 &lt;img src="pics/purrr-cheatsheet-2.png" height=550&gt;
 &lt;/div&gt;
+
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+
+``` r
+R&gt; # Load the starwars dataset
+R&gt; data(starwars)
+R&gt; 
+R&gt; # Custom function for calculations
+R&gt; calc_stats &lt;- function(df) {
++   df %&gt;%
++     summarise(
++       height_mean = mean(height, na.rm = TRUE),
++       height_sd = sd(height, na.rm = TRUE),
++       mass_mean = mean(mass, na.rm = TRUE),
++       mass_sd = sd(mass, na.rm = TRUE)
++     )
++ }
+```
+]
+
+--
+
+.pull-right[
+
+``` r
+R&gt; # Group by species and apply the custom function
+R&gt; species_stats &lt;- starwars %&gt;%
++   group_by(species) %&gt;%
++   nest() # Nesting the data
+R&gt; species_stats
+```
+
+```
+   # A tibble: 38 × 2
+   # Groups:   species [38]
+      species        data              
+      &lt;chr&gt;          &lt;list&gt;            
+    1 Human          &lt;tibble [35 × 13]&gt;
+    2 Droid          &lt;tibble [6 × 13]&gt; 
+    3 Wookiee        &lt;tibble [2 × 13]&gt; 
+    4 Rodian         &lt;tibble [1 × 13]&gt; 
+    5 Hutt           &lt;tibble [1 × 13]&gt; 
+    6 &lt;NA&gt;           &lt;tibble [4 × 13]&gt; 
+    7 Yoda's species &lt;tibble [1 × 13]&gt; 
+    8 Trandoshan     &lt;tibble [1 × 13]&gt; 
+    9 Mon Calamari   &lt;tibble [1 × 13]&gt; 
+   10 Ewok           &lt;tibble [1 × 13]&gt; 
+   # ℹ 28 more rows
+```
+]
+
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+
+``` r
+R&gt; # Load the starwars dataset
+R&gt; data(starwars)
+R&gt; 
+R&gt; # Custom function for calculations
+R&gt; calc_stats &lt;- function(df) {
++   df %&gt;%
++     summarise(
++       height_mean = mean(height, na.rm = TRUE),
++       height_sd = sd(height, na.rm = TRUE),
++       mass_mean = mean(mass, na.rm = TRUE),
++       mass_sd = sd(mass, na.rm = TRUE)
++     )
++ }
+```
+]
+
+.pull-right[
+
+``` r
+R&gt; # Group by species and apply the custom function
+R&gt; species_stats &lt;- starwars %&gt;%
++   group_by(species) %&gt;%
++   nest() %&gt;% # Nesting the data
++   # purrr magic
++   mutate(stats = map(data, calc_stats))
+R&gt; species_stats
+```
+
+```
+   # A tibble: 38 × 3
+   # Groups:   species [38]
+      species        data               stats           
+      &lt;chr&gt;          &lt;list&gt;             &lt;list&gt;          
+    1 Human          &lt;tibble [35 × 13]&gt; &lt;tibble [1 × 4]&gt;
+    2 Droid          &lt;tibble [6 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    3 Wookiee        &lt;tibble [2 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    4 Rodian         &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    5 Hutt           &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    6 &lt;NA&gt;           &lt;tibble [4 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    7 Yoda's species &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    8 Trandoshan     &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+    9 Mon Calamari   &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+   10 Ewok           &lt;tibble [1 × 13]&gt;  &lt;tibble [1 × 4]&gt;
+   # ℹ 28 more rows
+```
+]
+
+---
+# Another example
+
+.pull-left[
+## Task
+
+Let's say we want to calculate the mean and standard deviation of height and mass for each species in the `starwars` dataset.
+
+
+``` r
+R&gt; # Load the starwars dataset
+R&gt; data(starwars)
+R&gt; 
+R&gt; # Custom function for calculations
+R&gt; calc_stats &lt;- function(df) {
++   df %&gt;%
++     summarise(
++       height_mean = mean(height, na.rm = TRUE),
++       height_sd = sd(height, na.rm = TRUE),
++       mass_mean = mean(mass, na.rm = TRUE),
++       mass_sd = sd(mass, na.rm = TRUE)
++     )
++ }
+```
+]
+
+.pull-right[
+
+``` r
+R&gt; # Group by species and apply the custom function
+R&gt; species_stats &lt;- starwars %&gt;%
++   group_by(species) %&gt;%
++   nest() %&gt;% # Nesting the data
++   # purrr magic
++   mutate(stats = map(data, calc_stats)) %&gt;% 
++   select(species, stats) %&gt;% # Select columns
++   unnest(stats) # Unnest the data
+R&gt; species_stats
+```
+
+```
+   # A tibble: 38 × 5
+   # Groups:   species [38]
+      species        height_mean height_sd mass_mean mass_sd
+      &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+    1 Human                 178      12.0       81.3    19.3
+    2 Droid                 131.     49.1       69.8    51.0
+    3 Wookiee               231       4.24     124      17.0
+    4 Rodian                173      NA         74      NA  
+    5 Hutt                  175      NA       1358      NA  
+    6 &lt;NA&gt;                  175      12.4       81      31.2
+    7 Yoda's species         66      NA         17      NA  
+    8 Trandoshan            190      NA        113      NA  
+    9 Mon Calamari          180      NA         83      NA  
+   10 Ewok                   88      NA         20      NA  
+   # ℹ 28 more rows
+```
+]
+
+
 
 
 ---
@@ -1286,7 +1533,7 @@ Sometimes the mistake in your code is hard to diagnose, and googling doesn't hel
 In the call sequence below, the execution of `g()` triggers an error:
 
 
-```r
+``` r
 R&gt; f &lt;- function(x) x + 1
 R&gt; g &lt;- function(x) f(x)
 R&gt; g("a")
@@ -1299,7 +1546,7 @@ R&gt; g("a")
 Doing the traceback reveals that the function call f(x) is what lead to the error:
 
 
-```r
+``` r
 R&gt; traceback()
 ```
 
@@ -1328,7 +1575,7 @@ R&gt; traceback()
 ### Example
 
 
-```r
+``` r
 R&gt; h &lt;- function(x) x + 3
 R&gt; g &lt;- function(b) {
 *+   browser()
@@ -1387,7 +1634,7 @@ Some useful things to do are:
 - Activate debugging mode; then execute (flawed) function:
 
 
-```r
+``` r
 *R&gt; options(error = recover)
 R&gt; lm(mpg ~ wt, data = "mtcars")
 ```
@@ -1408,7 +1655,7 @@ Selection:
 - Deactivate debugging mode: 
 
 
-```r
+``` r
 *R&gt; options(error = NULL)
 ```
 ]
@@ -1434,7 +1681,7 @@ Selection:
 - Activate debugging mode for `lm()` function; then execute function:
 
 
-```r
+``` r
 *R&gt; debug(stats::lm)
 R&gt; lm(mpg ~ weight, data = "mtcars")
 ```
@@ -1452,7 +1699,7 @@ Browse[2]&gt;
 - Deactivate debugging mode: 
 
 
-```r
+``` r
 *R&gt; undebug(stats::lm)
 ```
 ]
@@ -1496,13 +1743,11 @@ Browse[2]&gt;
 
 ### Assignment
 
-Assignment 2 is online! You have a bit more than a week to work on it - final upload deadline is Oct 4.
+Assignment 2 is online! You have a bit more than a week to work on it - final upload deadline is Sep 24, 9:30am CET.
 
 ### Next lecture
 
 **Relational databases and SQL.** Buckle up and bring coffee, because it'll get both exciting and tedious at the same time.
-
-
 
 
     </textarea>
@@ -1610,6 +1855,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
