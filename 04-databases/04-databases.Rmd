@@ -1046,7 +1046,7 @@ Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery
 <img src="pics/db-connect-commercial.png" height=160>
 
 </div>
-`Credit` [db.rstudio.com](https://db.rstudio.com/)
+`Credit` [Posit.co](https://solutions.posit.co/connections/db/)
 ]
 
 
@@ -1246,7 +1246,7 @@ DBI::dbDisconnect(con)
 
 Get started with [The Beginner's Guide to Databases](https://technically.substack.com/p/the-beginners-guide-to-databases).
 
-A comprehensive overview of database interaction using R is available at [db.rstudio.com](https://db.rstudio.com/getting-started/overview). It also features a set of best practices that go beyond what we covered today.
+A comprehensive overview of database interaction using R is available at [posit.co](https://solutions.posit.co/connections/db/). It also features a set of best practices that go beyond what we covered today.
 
 Not to mention [Databases 101](https://raw.githack.com/uo-ec607/lectures/master/16-databases/16-databases.html) by Grant McDermott, which also features example code to connect to DuckDB and Google BigQuery.
 
@@ -1319,7 +1319,7 @@ background-color: #000000
 
 # Databases: Maybe not the most exciting technology...
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <p style="background-color:black;color:white;"><b>... but awesomely useful and not going away.</b></p>
 
 

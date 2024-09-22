@@ -8,7 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -18,13 +20,13 @@ class: center, middle, inverse, title-slide
 # Introduction to Data Science
 ]
 .subtitle[
-## Session 5: Relational databases and SQL
+## Session 4: Relational databases and SQL
 ]
 .author[
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -454,7 +456,7 @@ For the simple examples that I'm going to show here, we'll need some data sets t
 Let's load it now and then inspect these data frames in your own console.
 
 
-```r
+``` r
 R&gt; library(nycflights13)
 ```
 
@@ -469,7 +471,7 @@ The package contains the tables `flights`, `airlines`, `airports`, `planes`, and
 
 The `airlines` data frame lets you look up the full carrier name from its [abbreviated code](https://en.wikipedia.org/wiki/List_of_airline_codes): 
 
-```r
+``` r
 R&gt; head(airlines, 10)
 ```
 
@@ -497,7 +499,7 @@ The package contains the tables `flights`, `airlines`, `airports`, `planes`, and
 
 `airports` gives information about each airport, identified by the `faa` [airport code](https://airportcodes.io/en/faa-codes/): 
 
-```r
+``` r
 R&gt; head(airports, 10)
 ```
 
@@ -526,7 +528,7 @@ The package contains the tables `flights`, `airlines`, `airports`, `planes`, and
 
  `planes` gives information about each plane, identified by its `tailnum` (aircraft registration a.k.a. [tail number](https://en.wikipedia.org/wiki/Aircraft_registration)): 
 
-```r
+``` r
 R&gt; head(planes, 10)
 ```
 
@@ -553,7 +555,7 @@ The package contains the tables `flights`, `airlines`, `airports`, `planes`, and
 
 `weather` gives the [weather](https://www.youtube.com/watch?v=1ZyT_Aiey1U) at each NYC airport for each hour: 
 
-```r
+``` r
 R&gt; head(weather, 10)
 ```
 
@@ -583,7 +585,7 @@ The package contains the tables `flights`, `airlines`, `airports`, `planes`, and
 Finally, `flights` gives data on each of the 336776 flights in the dataset: 
 
 
-```r
+``` r
 R&gt; head(flights, 10)
 ```
 
@@ -790,7 +792,7 @@ Let's perform a [left join](https://stat545.com/bit001_dplyr-cheatsheet.html#lef
 --
 
 
-```r
+``` r
 R&gt; left_join(flights, planes) %&gt;%
 +   select(year, month, day, dep_time, arr_time, carrier, flight, tailnum, type, model)
 ```
@@ -843,7 +845,7 @@ Luckily, there's an easy way to avoid this problem.
 You just need to be more explicit in your join call by using the `by = ` argument.
 - You can also rename any ambiguous columns to avoid confusion. 
 
-```r
+``` r
 R&gt; left_join(
 +   flights,
 +   planes %&gt;% rename(year_built = year), ### Not necessary w/ below line, but helpful
@@ -870,7 +872,7 @@ R&gt; left_join(
 Last thing to mention on joins for now; note what happens if we again specify the join column... but don't rename the ambiguous "year" column in at least one of the given data frames:
 
 
-```r
+``` r
 R&gt; left_join(
 +   flights,
 +   planes, ### Not renaming "year" to "year_built" this time
@@ -969,7 +971,7 @@ The main SQL tool is `SELECT`, which allows you to perform queries on a table in
 
 
 
-```text
+``` text
 R&gt; SELECT columns or computations
 +   FROM table
 +   WHERE condition
@@ -998,7 +1000,7 @@ R&gt; SELECT columns or computations
 &lt;br&gt;
 
 
-```text
+``` text
 R&gt; CREATE DATABASE database1 ;
 + SELECT column1 FROM table1 WHERE column2 = 1 ;
 + UPDATE table1 SET column1 = 1 WHERE column2 &gt; 3 ;
@@ -1007,7 +1009,7 @@ R&gt; CREATE DATABASE database1 ;
 ```
 
 
-```text
+``` text
 R&gt; -- One line comment.
 + /*
 + Comment spanning
@@ -1167,7 +1169,7 @@ Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery
 &lt;img src="pics/db-connect-commercial.png" height=160&gt;
 
 &lt;/div&gt;
-`Credit` [db.rstudio.com](https://db.rstudio.com/)
+`Credit` [Posit.co](https://solutions.posit.co/connections/db/)
 ]
 
 
@@ -1200,7 +1202,7 @@ Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery
 Before we start, we load the `DBI` package to connect to a DBMS and the `RSQLite` package to communicate with an SQLite database. Tidyverse and `dplyr`/`dbplyr` will be used, too. Also, we will rely on `nycflights13` for some toy data sets.
 
 
-```r
+``` r
 R&gt; library(DBI)
 R&gt; library(RSQLite)
 R&gt; library(tidyverse)
@@ -1215,7 +1217,7 @@ Now, let's set up a connection with an SQLite database. In fact, we will not int
 
 
 
-```r
+``` r
 R&gt; con &lt;- dbConnect(RSQLite::SQLite(), dbname = ":memory:")
 ```
 
@@ -1230,7 +1232,7 @@ The arguments to `DBI::dbConnect()` vary from database to database, but the firs
 Also, in real life, chances are that the database lives on a server and you have to authenticate to connect to it. This could look as follows:
 
 
-```r
+``` r
 R&gt; con &lt;- DBI::dbConnect(RSQLite::SQLite(), 
 +                        host = "mydatabase.host.com",
 +                        user = "simon",
@@ -1245,7 +1247,7 @@ R&gt; con &lt;- DBI::dbConnect(RSQLite::SQLite(),
 Next, we upload a local data frame into the remote data source; here: our database. Note that this is specific to our (toy) example. You'll probably not have to build up your own database.
 
 
-```r
+``` r
 R&gt; dplyr::copy_to(
 +   dest = con, 
 +   df = nycflights13::flights, 
@@ -1259,7 +1261,7 @@ R&gt; dplyr::copy_to(
 Next, we upload a local data frame into the remote data source; here: our database. Note that this is specific to our (toy) example. You'll probably not have to build up your own database.
 
 
-```r
+``` r
 R&gt; dplyr::copy_to(
 +   dest = con, 
 +   df = nycflights13::flights, 
@@ -1283,20 +1285,20 @@ We can also explicitly set up indexes that will allow us to quickly process the 
 Now it's time to start querying our database. First, we generate a reference table from the database using `dplyr`'s `tbl`():
 
 
-```r
+``` r
 R&gt; flights_db &lt;- tbl(con, "flights")
 ```
 
 Note that `flights_db` is a remote source; the table is not stored in our local environment. We can use it as a "pointer" to the actual database. Next, we perform various queries, such as:
 
 
-```r
+``` r
 R&gt; flights_db %&gt;% select(year:day, dep_delay, arr_delay) %&gt;% head(3)
 ```
 
 ```
 ## # Source:   SQL [3 x 5]
-## # Database: sqlite 3.41.2 [/Users/simonmunzert/Munzert Dropbox/Simon Munzert/github/intro-to-data-science-23/lectures/05-databases/nycflightsdb]
+## # Database: sqlite 3.46.0 [/Users/simonmunzert/Munzert Dropbox/Simon Munzert/github/intro-to-data-science-24/lectures/04-databases/nycflightsdb]
 ##    year month   day dep_delay arr_delay
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1  2013     1     1         2        11
@@ -1317,7 +1319,7 @@ The most important difference between ordinary data frames and remote database q
 This even applies when you assign the output of a database query to an object:
 
 
-```r
+``` r
 R&gt; tailnum_delay_db &lt;- flights_db %&gt;% 
 +   group_by(tailnum) %&gt;%
 +   summarise(
@@ -1334,7 +1336,7 @@ R&gt; tailnum_delay_db &lt;- flights_db %&gt;%
 Laziness also has some downsides. Because there’s generally no way to determine how many rows a query will return unless you actually run it, nrow() is always NA:
 
 
-```r
+``` r
 R&gt; nrow(tailnum_delay_db)
 ```
 
@@ -1345,7 +1347,7 @@ R&gt; nrow(tailnum_delay_db)
 Because you can’t find the last few rows without executing the whole query, you can’t use tail():
 
 
-```r
+``` r
 R&gt; tail(tailnum_delay_db)
 ```
 
@@ -1357,7 +1359,7 @@ R&gt; tail(tailnum_delay_db)
 If you then want to pull the data into a local data frame, use `dplyr::collect()`:
 
 
-```r
+``` r
 R&gt; tailnum_delay &lt;- tailnum_delay_db %&gt;% collect()
 R&gt; tailnum_delay
 ```
@@ -1388,7 +1390,7 @@ Again, because it is so cool: Yes, we can use `dplyr` syntax to do database quer
 You can use the `show_query()` function to display the SQL code that was used to generate a queried table: 
 
 
-```r
+``` r
 R&gt; tailnum_delay_db %&gt;% show_query()
 ```
 
@@ -1404,7 +1406,7 @@ R&gt; tailnum_delay_db %&gt;% show_query()
 If you still want to formulate SQL queries and pass them on to the DBMS, use `DBI::dbGetQuery()`:
 
 
-```r
+``` r
 R&gt; sql_query &lt;- "SELECT * FROM flights WHERE dep_delay &gt; 240.0 LIMIT 5"
 R&gt; dbGetQuery(con, sql_query)
 ```
@@ -1441,7 +1443,7 @@ R&gt; dbGetQuery(con, sql_query)
 
 Get started with [The Beginner's Guide to Databases](https://technically.substack.com/p/the-beginners-guide-to-databases).
 
-A comprehensive overview of database interaction using R is available at [db.rstudio.com](https://db.rstudio.com/getting-started/overview). It also features a set of best practices that go beyond what we covered today.
+A comprehensive overview of database interaction using R is available at [posit.co](https://solutions.posit.co/connections/db/). It also features a set of best practices that go beyond what we covered today.
 
 Not to mention [Databases 101](https://raw.githack.com/uo-ec607/lectures/master/16-databases/16-databases.html) by Grant McDermott, which also features example code to connect to DuckDB and Google BigQuery.
 
@@ -1514,7 +1516,7 @@ background-color: #000000
 
 # Databases: Maybe not the most exciting technology...
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;p style="background-color:black;color:white;"&gt;&lt;b&gt;... but awesomely useful and not going away.&lt;/b&gt;&lt;/p&gt;
 
 
@@ -1641,6 +1643,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
