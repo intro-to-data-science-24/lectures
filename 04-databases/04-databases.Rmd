@@ -132,6 +132,27 @@ name: whydb
 
 ---
 
+# The ubiqity of multi-dimensional data structures
+
+.pull-left-center[
+<div align="center">
+<img src="pics/legislator-structure.png" height=520> 
+</div>
+`Credit` [saschagobel/legislatoR](https://github.com/saschagobel/legislatoR)
+]
+
+.pull-right[
+<br>
+<div align="center">
+<img src="pics/arnie-this-is-not-a-database.gif" height=350 loop=infinite>
+</div>
+]
+
+
+
+
+---
+
 # When databases become useful
 
 .pull-left[
