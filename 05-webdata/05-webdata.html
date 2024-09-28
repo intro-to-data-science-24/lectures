@@ -8,7 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -18,13 +20,13 @@ class: center, middle, inverse, title-slide
 # Introduction to Data Science
 ]
 .subtitle[
-## Session 6: Web data and technologies
+## Session 5: Web data and technologies
 ]
 .author[
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -214,7 +216,7 @@ name: html
 .pull-right[
 
 
-```html
+``` html
 &lt;!DOCTYPE html&gt; 
   &lt;html&gt; 
     &lt;head&gt;
@@ -227,7 +229,7 @@ name: html
 ```
 
 &lt;div align="center"&gt;
-&lt;img src="pics/htmltree.png" width=650&gt;
+&lt;img src="pics/htmltree.png" width=450&gt;
 &lt;/div&gt;
 ]
 
@@ -280,19 +282,19 @@ name: html
 
 Link to another resource:
 
-```html
+``` html
 &lt;a href="en.wikipedia.org/wiki/List_of_lists_of_lists"&gt;Link with absolute path&lt;/a&gt;
 ```
 
 Reference within a document:
 
-```html
+``` html
 &lt;a id="top"&gt;Reference point&lt;/a&gt;
 ```
 
 Link to a reference within a document:
 
-```html
+``` html
 &lt;a href="#top"&gt;Link to reference point&lt;/a&gt;
 ```
 
@@ -307,12 +309,12 @@ Link to a reference within a document:
 
 Examples:
 
-```html
+``` html
 &lt;p&gt;This text is going to be a paragraph one day and separated from other text by line breaks.&lt;/p&gt;
 ```
 
 
-```html
+``` html
 &lt;h1&gt;heading of level 1 - this will be BIG&lt;/h1&gt;
 ...
 &lt;h6&gt;heading of level 6 - the smallest heading&lt;/h6&gt;
@@ -332,7 +334,7 @@ Examples:
 
 Example:
 
-```html
+``` html
 &lt;ul&gt;
   &lt;li&gt;Dogs&lt;/li&gt;
   &lt;li&gt;Cats&lt;/li&gt;
@@ -354,7 +356,7 @@ Example:
 Example of CSS definition:
 
 
-```css
+``` css
 div.happy {
   color:pink; 
   font-family:"Comic Sans MS";
@@ -372,7 +374,7 @@ span.happy {
 In the HTML document:
 
 
-```html
+``` html
 &lt;div class="happy"&gt;
   &lt;p&gt;I am a happy-styled paragraph&lt;/p&gt;
 &lt;/div&gt;
@@ -395,7 +397,7 @@ happiness&lt;/span&gt;
 Example:
 
 
-```html
+``` html
 &lt;form name="submitPW" action="Passed.html" method="get"&gt;
   password:
   &lt;input name="pw" type="text" value=""&gt;
@@ -416,7 +418,7 @@ Example:
 Example:
 
 
-```html
+``` html
 &lt;table&gt; 
   &lt;tr&gt; &lt;th&gt;Rank&lt;/th&gt; &lt;th&gt;Nominal GDP&lt;/th&gt; &lt;th&gt;Name&lt;/th&gt; &lt;/tr&gt; 
   &lt;tr&gt; &lt;th&gt;&lt;/th&gt; &lt;th&gt;(per capita, USD)&lt;/th&gt; &lt;th&gt;&lt;/th&gt; &lt;/tr&gt; 
@@ -620,7 +622,7 @@ name: xpath
 Parsing a website is straightforward:
 
 
-```r
+``` r
 R&gt; library(rvest)
 R&gt; parsed_doc &lt;- read_html("https://google.com")
 R&gt; parsed_doc
@@ -630,13 +632,13 @@ R&gt; parsed_doc
 ## {html_document}
 ## &lt;html itemscope="" itemtype="http://schema.org/WebPage" lang="de"&gt;
 ## [1] &lt;head&gt;\n&lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type ...
-## [2] &lt;body bgcolor="#fff"&gt;\n&lt;script nonce="Kyq2C8MnNpApyAxm0PzrjQ"&gt;(function() ...
+## [2] &lt;body bgcolor="#fff"&gt;\n&lt;script nonce="1j0I7Gs5UXclfxqcq03FsA"&gt;(function() ...
 ```
 
 There are various functions to inspect the parsed document. They aren't really helpful - better use the browser instead if you want to dive into the HTML.
 
 
-```r
+``` r
 R&gt; xml2::html_structure(parsed_doc)
 R&gt; xml2::as_list(parsed_doc)
 ```
@@ -665,7 +667,7 @@ R&gt; xml2::as_list(parsed_doc)
 # Example: source code
 
 
-```html
+``` html
 &lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"&gt;
 &lt;html&gt; 
  &lt;head&gt;
@@ -706,7 +708,7 @@ R&gt; xml2::as_list(parsed_doc)
 - Parse HTML document with `read_html()`
 
 
-```r
+``` r
 R&gt; library(rvest)
 R&gt; parsed_doc &lt;- read_html("materials/fortunes.html")
 R&gt; parsed_doc
@@ -724,7 +726,7 @@ R&gt; parsed_doc
 - Today, we'll focus on XPath:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div[last()]/p/i")
 ```
 
@@ -745,7 +747,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div[last()]/p/i")
 4. Apply XPath on DOM in R using `html_elements()`.
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div[last()]/p/i")
 ```
 
@@ -763,7 +765,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div[last()]/p/i")
 **Absolute paths** start at the root element and follow the whole way down to the target element (with simple slashes, `/`).
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "/html/body/div/p/i")
 ```
 
@@ -776,7 +778,7 @@ R&gt; html_elements(parsed_doc, xpath = "/html/body/div/p/i")
 **Relative paths** skip nodes (with double slashes, `//`).
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//body//p/i")
 ```
 
@@ -799,7 +801,7 @@ Relative paths are often preferrable. They are faster to write and more comprehe
 - Far less important than, e.g., wildcards in content-based queries (regex!)
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "/html/body/div/*/i")
 ```
 
@@ -809,7 +811,7 @@ R&gt; html_elements(parsed_doc, xpath = "/html/body/div/*/i")
 ## [2] &lt;i&gt;'R is wonderful, but it cannot work magic'&lt;/i&gt;
 ```
 
-```r
+``` r
 R&gt; # the following does not work:
 R&gt; html_elements(parsed_doc, xpath = "/html/body/*/i")
 ```
@@ -827,7 +829,7 @@ R&gt; html_elements(parsed_doc, xpath = "/html/body/*/i")
 - `".."` accesses elements at a higher hierarchical level.
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//title/..")
 ```
 
@@ -837,7 +839,7 @@ R&gt; html_elements(parsed_doc, xpath = "//title/..")
 ```
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div[starts-with(./@id, 'R')]")
 ```
 
@@ -893,7 +895,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div[starts-with(./@id, 'R')]")
 Example: access the `&lt;div&gt;` elements that are ancestors to an `&lt;a&gt;` element:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//a/ancestor::div")
 ```
 
@@ -905,7 +907,7 @@ R&gt; html_elements(parsed_doc, xpath = "//a/ancestor::div")
 Another example: Select all `&lt;h1&gt;` nodes that precede a `&lt;p&gt;` node:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//p/preceding-sibling::h1")
 ```
 
@@ -929,7 +931,7 @@ R&gt; html_elements(parsed_doc, xpath = "//p/preceding-sibling::h1")
 Select all first `&lt;p&gt;` elements that are children of a `&lt;div&gt;` element, using a **numeric predicate**:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div/p[1]")
 ```
 
@@ -944,7 +946,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div/p[1]")
 Can you find out what the following expressions do? 
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div/p[last()-1]") 
 R&gt; html_elements(parsed_doc, xpath = "//div[count(./@*)&gt;2]")
 R&gt; html_elements(parsed_doc, xpath = "//*[string-length(text())&gt;50]")
@@ -956,7 +958,7 @@ R&gt; html_elements(parsed_doc, xpath = "//*[string-length(text())&gt;50]")
 Select all `&lt;div&gt;` nodes that contain an attribute named `’October/2011’`, using a **textual predicate**:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath ="//div[@date='October/2011']")
 ```
 
@@ -972,7 +974,7 @@ Rudimentary string matching is also possible using string functions like `contai
 Can you tell what the following calls do?
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div[starts-with(./@id, 'R')]")
 R&gt; html_elements(parsed_doc, xpath = "//div[substring-after(./@date, '/')='2003']//i")
 ```
@@ -1000,7 +1002,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div[substring-after(./@date, '/')='20
 Extracting **element values/content**:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//title") %&gt;% html_text2()
 ```
 
@@ -1011,7 +1013,7 @@ R&gt; html_elements(parsed_doc, xpath = "//title") %&gt;% html_text2()
 Extracting **attributes**:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div[1]") %&gt;% html_attrs()
 ```
 
@@ -1024,7 +1026,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div[1]") %&gt;% html_attrs()
 Extracting **attribute values**:
 
 
-```r
+``` r
 R&gt; html_elements(parsed_doc, xpath = "//div") %&gt;% html_attr("lang")
 ```
 
@@ -1041,6 +1043,7 @@ R&gt; html_elements(parsed_doc, xpath = "//div") %&gt;% html_attr("lang")
 - XPath is a little language of its own. As always with languages, mastery comes with practice.
 - A good environment for practice is the [XPath expression testbed at whitebeam.org](http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm).
 - Also check out this [cheat sheet](https://devhints.io/xpath).
+- The undoubtedly best way to learn it is [Xpath Diner](https://topswagcode.com/xpath/), inspired by [CSS Diner](https://flukeout.github.io/).
 
 ### XPath creator tools
 
@@ -1081,7 +1084,7 @@ name: css
 .pull-right[
 **External CSS**
 
-```html
+``` html
 &lt;head&gt;
   &lt;link rel="stylesheet" href="mystyle.css"&gt;
 &lt;/head&gt;
@@ -1089,7 +1092,7 @@ name: css
 
 **Internal CSS**
 
-```html
+``` html
 &lt;head&gt;
    &lt;style&gt;
       h1 {
@@ -1102,7 +1105,7 @@ name: css
 
 **Inline CSS**
 
-```html
+``` html
 &lt;p style="color: blue;"&gt;This is a paragraph.&lt;/p&gt;
 ```
 ]
@@ -1129,7 +1132,7 @@ name: css
 
 - Just as XPath, CSS selectors are a little language of their own.
 - I won't teach you more about it, but you might nevertheless want to learn it.
-- Check out the CSS diner tutorial at https://flukeout.github.io/. It's one of the best tutorials of anything out there.
+- Check out the [CSS diner tutorial](https://flukeout.github.io/). It's one of the best tutorials of anything out there.
 
 &lt;div align="center"&gt;
 &lt;img src="pics/flukeout-demo.gif" width=420&gt;
@@ -1185,7 +1188,7 @@ Whenever the information of interest is (stored in) text, regular expressions ar
 Below you see a string that contains unstructured phone book entries. The goal is to clean it up and extract the entries. The problem is that the text is really messy, and to find a pattern that helps us describe names on the one hand and phone numbers on the other is difficult. But: regular expressions FTW!
 
 
-```r
+``` r
 R&gt; phone_vec &lt;- 
 + "555-1239Moe Szyslak(636) 555-0113Burns, C. Montgomery
 + 555-6542Rev. Timothy Lovejoy555 8904Ned Flanders636-555-3226
@@ -1200,7 +1203,7 @@ We're loading the `stringr` package that provides us with tidyverse functionalit
 # Regular expressions: example
 
 
-```r
+``` r
 R&gt; phone_vec &lt;- 
 + "555-1239Moe Szyslak(636) 555-0113Burns, C. Montgomery
 + 555-6542Rev. Timothy Lovejoy555 8904Ned Flanders636-555-3226
@@ -1210,7 +1213,7 @@ R&gt; phone_vec &lt;-
 --
 
 
-```r
+``` r
 R&gt; library(stringr)
 R&gt; names_vec &lt;- unlist(str_extract_all(phone_vec, "[[:alpha:]., ]{2,}"))
 R&gt; names_vec
@@ -1224,7 +1227,7 @@ R&gt; names_vec
 --
 
 
-```r
+``` r
 R&gt; numbers_vec &lt;- unlist(str_extract_all(phone_vec, 
 +                                       "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
 R&gt; numbers_vec
@@ -1253,7 +1256,7 @@ Wait, wait?! 🤯
 Here's an example string we're going to work with:
 
 
-```r
+``` r
 R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
@@ -1270,7 +1273,7 @@ Here's the difference: `str_extract()` returns the first match, `str_extract_all
 # Basic regex syntax
 
 
-```r
+``` r
 R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
@@ -1278,7 +1281,7 @@ R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ### Strings match themselves
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "small")
 ```
 
@@ -1286,7 +1289,7 @@ R&gt; str_extract(example.obj, "small")
 ## [1] "small"
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "banana")
 ```
 
@@ -1301,7 +1304,7 @@ R&gt; str_extract(example.obj, "banana")
 ### Multiple matches are returned as a list
 
 
-```r
+``` r
 R&gt; multi_vec &lt;- c("text", "manipulation", "basics")
 R&gt; str_extract_all(multi_vec, "a")
 ```
@@ -1323,7 +1326,7 @@ R&gt; str_extract_all(multi_vec, "a")
 # Basic regex syntax *cont.*
 
 
-```r
+``` r
 R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
@@ -1331,7 +1334,7 @@ R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ### Character matching is case sensitive
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "small")
 ```
 
@@ -1339,7 +1342,7 @@ R&gt; str_extract(example.obj, "small")
 ## [1] "small"
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "SMALL")
 ```
 
@@ -1347,7 +1350,7 @@ R&gt; str_extract(example.obj, "SMALL")
 ## [1] NA
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, 
 +             regex("SMALL", ignore_case = TRUE))
 ```
@@ -1363,7 +1366,7 @@ R&gt; str_extract(example.obj,
 ### We can match arbitrary combinations of characters
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "mall sent")
 ```
 
@@ -1377,7 +1380,7 @@ R&gt; str_extract(example.obj, "mall sent")
 # Basic regex syntax *cont.*
 
 
-```r
+``` r
 R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
@@ -1385,7 +1388,7 @@ R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ### Matching the beginning of a string
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "^1")
 ```
 
@@ -1393,7 +1396,7 @@ R&gt; str_extract(example.obj, "^1")
 ## [1] "1"
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "^2")
 ```
 
@@ -1408,7 +1411,7 @@ R&gt; str_extract(example.obj, "^2")
 ### Matching the end of a string
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "sentence$")
 ```
 
@@ -1416,7 +1419,7 @@ R&gt; str_extract(example.obj, "sentence$")
 ## [1] NA
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "sentence.$")
 ```
 
@@ -1431,7 +1434,7 @@ R&gt; str_extract(example.obj, "sentence.$")
 # Basic regex syntax *cont.*
 
 
-```r
+``` r
 R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
@@ -1439,7 +1442,7 @@ R&gt; example.obj &lt;- "1. A small sentence. - 2. Another tiny sentence."
 ### Express an "or" with the pipe operator
 
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "tiny|sentence"))
 ```
 
@@ -1454,7 +1457,7 @@ R&gt; unlist(str_extract_all(example.obj, "tiny|sentence"))
 ### The dot: the ultimate wildcard
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "sm.ll")
 ```
 
@@ -1476,7 +1479,7 @@ R&gt; str_extract(example.obj, "sm.ll")
 - Alternatively, use `fixed("symbols")` to let the parser interpret a chain of symbols literally.
 
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "\\."))
 ```
 
@@ -1484,7 +1487,7 @@ R&gt; unlist(str_extract_all(example.obj, "\\."))
 ## [1] "." "." "." "."
 ```
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, fixed(".")))
 ```
 
@@ -1502,7 +1505,7 @@ R&gt; unlist(str_extract_all(example.obj, fixed(".")))
 - The idea is that any of the characters within the brackets can be matched.
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "sm[abc]ll")
 ```
 
@@ -1513,7 +1516,7 @@ R&gt; str_extract(example.obj, "sm[abc]ll")
 - The hyphen defines a range of characters.
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "sm[a-p]ll")
 ```
 
@@ -1550,7 +1553,7 @@ Pre-defined character classes are useful because they are efficient and let us
 - can be extended
 
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "[[:punct:]ABC]"))
 ```
 
@@ -1558,7 +1561,7 @@ R&gt; unlist(str_extract_all(example.obj, "[[:punct:]ABC]"))
 ## [1] "." "A" "." "-" "." "A" "."
 ```
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "[^[:alnum:]]"))
 ```
 
@@ -1576,7 +1579,7 @@ Within a character class, most meta-characters lose their special meaning. There
 - `-` becomes a range specifier: `[a-d]` matches any character from a to d. However, `-` at the beginning or the end of a character class matches the hyphen. 
 
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "[1-2]"))
 ```
 
@@ -1584,7 +1587,7 @@ R&gt; unlist(str_extract_all(example.obj, "[1-2]"))
 ## [1] "1" "2"
 ```
 
-```r
+``` r
 R&gt; unlist(str_extract_all(example.obj, "[12-]"))
 ```
 
@@ -1608,7 +1611,7 @@ Quantifiers are meta-characters that allow you to specify how often a certain st
   | `{n,m}`  |  The preceding item is matched between n and m times |
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "s[[:alpha:]]{3}l")
 ```
 
@@ -1616,7 +1619,7 @@ R&gt; str_extract(example.obj, "s[[:alpha:]]{3}l")
 ## [1] "small"
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "A.+sentence")
 ```
 
@@ -1631,7 +1634,7 @@ R&gt; str_extract(example.obj, "A.+sentence")
 The use of `.+` results in "greedy" matching, i.e. the parser tries to match as many characters as possible. This is not always desired. However, the meta-character `? ` helps avoid greedy quantification. More generally, it re-interprets the quantifiers `*`, `+`, `?` or `{m,n}` to match as few times as possible.
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "A.+sentence")
 ```
 
@@ -1639,7 +1642,7 @@ R&gt; str_extract(example.obj, "A.+sentence")
 ## [1] "A small sentence. - 2. Another tiny sentence"
 ```
 
-```r
+``` r
 R&gt; str_extract(example.obj, "A.+?sentence")
 ```
 
@@ -1658,7 +1661,7 @@ The first pattern is defined with round brackets, as in `(pattern)`. We then ref
 **Example:** Match the first letter, then anything until you ﬁnd the first letter again (not greedy).
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "([[:alpha:]]).+?\\1")
 ```
 
@@ -1675,7 +1678,7 @@ R&gt; str_extract(example.obj, "([[:alpha:]]).+?\\1")
 **Solution:**
 
 
-```r
+``` r
 R&gt; str_extract(example.obj, "([ [:punct:]][b-z]+[ [:punct:]]).+?\\1")
 ```
 
@@ -1703,7 +1706,7 @@ R&gt; str_extract(example.obj, "([ [:punct:]][b-z]+[ [:punct:]]).+?\\1")
 
 ### Assignment
 
-No assignment due, but web technologies will be featured in the next assignment.
+No assignment due, but web technologies will be featured in the next assignment. There's a quiz though!
 
 ### Next lecture
 
@@ -1814,6 +1817,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {

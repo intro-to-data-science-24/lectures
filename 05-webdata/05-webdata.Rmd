@@ -237,7 +237,7 @@ name: html
 ```
 
 <div align="center">
-<img src="pics/htmltree.png" width=650>
+<img src="pics/htmltree.png" width=450>
 </div>
 ]
 
@@ -927,6 +927,7 @@ html_elements(parsed_doc, xpath = "//div") %>% html_attr("lang")
 - XPath is a little language of its own. As always with languages, mastery comes with practice.
 - A good environment for practice is the [XPath expression testbed at whitebeam.org](http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm).
 - Also check out this [cheat sheet](https://devhints.io/xpath).
+- The undoubtedly best way to learn it is [Xpath Diner](https://topswagcode.com/xpath/), inspired by [CSS Diner](https://flukeout.github.io/).
 
 ### XPath creator tools
 
@@ -1012,7 +1013,7 @@ name: css
 
 - Just as XPath, CSS selectors are a little language of their own.
 - I won't teach you more about it, but you might nevertheless want to learn it.
-- Check out the CSS diner tutorial at https://flukeout.github.io/. It's one of the best tutorials of anything out there.
+- Check out the [CSS diner tutorial](https://flukeout.github.io/). It's one of the best tutorials of anything out there.
 
 <div align="center">
 <img src="pics/flukeout-demo.gif" width=420>
@@ -1405,7 +1406,7 @@ str_extract(example.obj, "([ [:punct:]][b-z]+[ [:punct:]]).+?\\1")
 
 ### Assignment
 
-No assignment due, but web technologies will be featured in the next assignment.
+No assignment due, but web technologies will be featured in the next assignment. There's a quiz though!
 
 ### Next lecture
 
