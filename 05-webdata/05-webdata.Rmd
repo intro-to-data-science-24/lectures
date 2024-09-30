@@ -181,9 +181,8 @@ name: html
 - **H**yper**T**ext **M**arkup **L**anguage
 - Markup language = plain text + markups
 - Originally specified by [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) at [CERN](https://en.wikipedia.org/wiki/CERN) in 1989/90 
-- [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) standard for the construction of websites.
-- The fundamentals of HTML haven't changed much recently. Current version is HTML 5.2 (published in 2017). 
-
+- (Used to be a) [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) standard for the construction of websites.
+- The fundamentals of HTML haven't changed much recently. The latest W3C version is HTML5, which was released in 2014. The current specification, the [HTML Living Standard](https://en.wikipedia.org/wiki/HTML5#W3C_and_WHATWG_conflict), is maintained by the [WHATWG](https://whatwg.org/).
 
 ### What is it good for?
 
