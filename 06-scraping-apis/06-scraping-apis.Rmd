@@ -238,8 +238,7 @@ url_p <- read_html(url)
 **Step 2:** Develop an XPath expression (or multiple) that select the information of interest and apply it
 
 ```{r, eval = TRUE}
-elements_set <- html_elements(url_p, xpath = "//h2/span[text()='Alphabetically']//following::li/a[1]")
-
+elements_set <- html_elements(url_p, xpath = "//h2[text()='Alphabetically']//following::li/a[1]")
 ```
 
 --
@@ -247,7 +246,7 @@ elements_set <- html_elements(url_p, xpath = "//h2/span[text()='Alphabetically']
 The XPath expression reads:
 
 - `//h2`: Look for  `h2` elements anywhere in the document.
-- `/span[text()='Alphabetically']`: Within that element look for `span` elements with the content `"Alphabetically"`.
+- `[text()='Alphabetically']`: Look for `h2` elements with the content `"Alphabetically"`.
 - `//following::li`: In the DOM tree following that element (at any level), look for `li` elements.
 - `/a[1]` within these elements look for the first `a` element you can find.
 
@@ -501,7 +500,6 @@ name: goodpractice
 
 ```{txt, prompt = FALSE, eval = FALSE}
 User-agent: Googlebot 
-Disallow: /pics/ 
 Disallow: /private/
 ```
 
@@ -903,10 +901,10 @@ httr::content(response, as = "text") %>%
 
 The [`ipapi` package](https://github.com/hrbrmstr/ipapi) by Bob Rudis provides high-level access to the IP API. You just have to install it and can then work with the `geolocate()` function provided by the package to call the API.
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 # devtools::install_github("hrbrmstr/ipapi") # uncomment to install if necessary
 library(ipapi)
-ip_df <- geolocate(c("", "10.0.1.1", "72.33.67.89", "www.spiegel.de"), .progress=TRUE)
+ip_df <- geolocate(c("", "10.0.1.1", "www.spiegel.de"), .progress=TRUE)
 ip_df
 ```
 
@@ -1191,7 +1189,7 @@ On the other hand, the rise of API architectures is not without issues. It requi
 
 If you want to learn more about APIs in depth, check out [this introduction to APIs](https://zapier.com/learn/apis/chapter-1-introduction-to-apis/). Or, check out this [hands-on intro video to APIs in R by Leo Glowacki](https://www.youtube.com/watch?v=kZU240u9H3E&t=2248s).
 
-There are many resources that give an overview of existing public APIs, including [ProgrammableWeb](https://www.programmableweb.com/apis/directory) and this [List of public APIs on GitHub](https://github.com/public-apis/public-apis). Another useful resource is [APIs for social scientists - a collaborative review](https://bookdown.org/paul/apis_for_social_scientists/).
+There are many resources that give an overview of existing public APIs, including this [List of public APIs on GitHub](https://github.com/public-apis/public-apis). Another useful resource is [APIs for social scientists - a collaborative review](https://bookdown.org/paul/apis_for_social_scientists/).
 
 Finally, if you plan to write an R client for a web API, check out [this guide](https://httr.r-lib.org/articles/api-packages.html).
 
