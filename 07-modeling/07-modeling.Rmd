@@ -511,7 +511,7 @@ ml_out <- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum), data =
 
 .pull-left-center[
 <div align="center">
-<img src="pics/nested-models-chen.png" width=600>
+<img src="pics/nested-models-chen.png" width=500>
 </div>
 `Credit` Chen 2010, [The Effect of Electoral Geography on Pork Barreling in Bicameral Legislatures](https://www.jstor.org/stable/25652208)
 ]
@@ -540,8 +540,8 @@ ml_out <- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum), data =
 
 .pull-right[
 <div align="center">
-<img src="pics/multiverse-analysis-1.png" width=450>
-<img src="pics/multimodel-analysis.png" width=230>
+<img src="pics/multiverse-analysis-1.png" width=500>
+<!--<img src="pics/multimodel-analysis.png" width=230>-->
 </div>
 ]
 
@@ -1175,7 +1175,7 @@ There are three key `modelsummary` verbs that you need to learn.<sup>1</sup>
 
 - `modelsummary()` takes one or several models as input. Multiple models are provided as (optionally named) list.
 - The extraction of information (estimates, standard errors, model summaries etc.) is taken care of by the function.
-- On this slide you see how `modelsummary()` generates content ready to be rendered as HTML table. With the `output` argument, we can also ask the function to creat `.tex`, `.rmd`, `.txt`, `.png`, and `.jpg`.
+- On this slide you see how `modelsummary()` generates content ready to be rendered as HTML table. With the `output` argument, we can also ask the function to create `.tex`, `.rmd`, `.txt`, `.png`, and `.jpg`.
 - Although the defaults are good, be sure to refine the table before publishing it.
 
 ]
@@ -1188,9 +1188,8 @@ model2_out <- lm(arr_delay ~ distance, data = flights)
 model3_out <- lm(arr_delay ~ dep_delay + distance, data = flights)
 ```
 
-
 ```{r}
-modelsummary(list(model1_out, model2_out, model3_out))
+modelsummary(list(model1_out, model2_out, model3_out), output = "gt")
 ```
 
 ]
@@ -1221,7 +1220,8 @@ modelsummary(models,
              estimate = "{estimate} [{conf.low}, {conf.high}]",
              statistic = NULL,
              gof_omit = ".+",
-             title = "Linear regression of flight delay at arrival (in mins)") 
+             title = "Linear regression of flight delay at arrival (in mins)",
+             output = "gt") 
 ```
 ]
 

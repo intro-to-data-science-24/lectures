@@ -953,8 +953,7 @@ pop_df %>%
 - The short online quizzes will test your knowledge about the topics covered in class.
 - There will be 5 quizzes and the 4 best will contribute to the final grade.
 - You'll have one week to work on each assignment (deadline: Tuesdays at 9:30am).
-
-
+- Note that quizzes will employ negative grading. Usually a question is multiple choice, with an unknown number of correct items. The rationale is that if you select all options with not all of them being correct, you should receive 0 points (otherwise, in the absence of negative grading, selecting all answers would be the dominant strategy). Examples are a question with three correct options (33% each) and three wrong ones (-33% each) and another question with one correct option (100%) and 6 wrong ones (-16.7% each).
 ---
 # Assignments and grading
 

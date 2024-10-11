@@ -8,9 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <script src="libs/kePrint/kePrint.js"></script>
-    <link href="libs/lightable/lightable.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -20,13 +20,13 @@ class: center, middle, inverse, title-slide
 # Introduction to Data Science
 ]
 .subtitle[
-## Session 8: Model fitting and evaluation
+## Session 7: Model fitting and evaluation
 ]
 .author[
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-22">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -152,7 +152,7 @@ background-color: #000000
 - The basic structure of a formula is the tilde symbol (~) and at least one independent (righthand) variable. In most (but not all) situations, a single dependent (lefthand) variable is also needed. Thus we can construct a formula quite simply by just typing:
 
 
-```r
+``` r
 R&gt; y ~ x
 ```
 
@@ -160,7 +160,7 @@ R&gt; y ~ x
 - Running a model with a formula is straightforward. Note that we don't even have to put the formula in parentheses - it is automatically interpreted as one formula expression when provided as the first argument:
 
 
-```r
+``` r
 R&gt; lm(arr_delay ~ distance + origin, data = flights)
 ```
 
@@ -172,7 +172,7 @@ R&gt; lm(arr_delay ~ distance + origin, data = flights)
 - A more explicit way is to write the formula as string and then use `as.formula()` to turn it into a formula object. This implies that we can store formulas as an R object and check its class.
 
 
-```r
+``` r
 R&gt; fmla &lt;- as.formula("arr_delay ~ distance + origin")
 R&gt; class(fmla)
 ```
@@ -184,7 +184,7 @@ R&gt; class(fmla)
 - Next, we'd pass on the `formula` object to the model function, e.g.:
 
 
-```r
+``` r
 R&gt; lm(fmla, data = flights)
 ```
 
@@ -204,28 +204,28 @@ R&gt; lm(fmla, data = flights)
 - We can use multiple independent variables by simply separating them with the plus (+) symbol:
 
 
-```r
+``` r
 R&gt; y ~ x1 + x2
 ```
 
 - If we use a minus (-) symbol, objects in the formula are ignored in an analysis:
 
 
-```r
+``` r
 R&gt; y ~ x1 - x2
 ```
 
 - We can also use this to drop the intercept:
 
 
-```r
+``` r
 R&gt; y ~ x1 - x2 - 1
 ```
 
 - The `.` operator refers to all other variables in the matrix/data frame not yet included in the model. This is useful when you plan to run a regression on all variables in a matrix/data frame:
 
 
-```r
+``` r
 R&gt; y ~ .
 ```
 
@@ -235,21 +235,21 @@ R&gt; y ~ .
 In a regression modeling context, we often need to specify interaction terms. There are two ways to do this. If we want to include two variables and their interaction, we use the star/asterisk (`*`) symbol:
 
 
-```r
+``` r
 R&gt; y ~ x1 * x2
 ```
 
 That's equivalent to
 
 
-```r
+``` r
 R&gt; y ~ x1 + x2 + x1*x2
 ```
 
 If you only want their interaction, but not the variables themselves as main effects (which you probably don't want), use the colon symbol:
 
 
-```r
+``` r
 R&gt; y ~ x1:x2
 ```
 
@@ -259,21 +259,21 @@ R&gt; y ~ x1:x2
 One trick to formulas is that they don't evaluate their contents. So, for example, if we wanted to include `\(x\)` and `\(x^2\)` in our model, we might be tempted to type:
 
 
-```r
+``` r
 R&gt; y ~ x + x^2
 ```
 
 This won't work though. We therefore have to either calculate and store all of the variables we want to include in the model in advance, or we need to use the `I()` "as-is" operator, short for "Inhibit Interpretation/Conversion of Objects". In a formula function, `I()` is used to inhibit the interpretation of operators such as `+`, `-`, `*` and `^` as formula operators, so they are used as arithmetical operators. To obtain our desired two-term formula, we type:
 
 
-```r
+``` r
 R&gt; y ~ x + I(x^2)
 ```
 
 Again, the alternative would have been something like:
 
 
-```r
+``` r
 R&gt; data$x2 &lt;- (data$x)^2
 R&gt; y ~ x + x2
 ```
@@ -297,7 +297,7 @@ R&gt; y ~ x + x2
 **Example:**
 
 
-```r
+``` r
 R&gt; xvars &lt;- paste0("x", 1:20)
 R&gt; fmla &lt;- as.formula(paste("y ~ ", paste(xvars, collapse= "+")))
 R&gt; fmla
@@ -325,7 +325,7 @@ R&gt; fmla
 **Step 1: Define dependent variable and covariate set**
 
 
-```r
+``` r
 R&gt; depvar &lt;- "arr_delay"
 R&gt; covars &lt;- c("dep_delay", "carrier", "origin", "air_time", "distance", "hour")
 ```
@@ -336,7 +336,7 @@ R&gt; covars &lt;- c("dep_delay", "carrier", "origin", "air_time", "distance", "
 **Step 1a (just for fun): Compute the number of unique combinations of all these covariates**
 
 
-```r
+``` r
 R&gt; combinations &lt;- 
 +   map(1:6, function(x) {combn(1:6, x)}) %&gt;% # create all possible combinations (draw 1 to 6 out of 6)
 +   map(ncol) %&gt;% # extract number of combinations
@@ -356,7 +356,7 @@ R&gt; combinations
 **Step 2: Build function to run lm models across set of all possible variable combinations **
 
 
-```r
+``` r
 R&gt; combn_models &lt;- function(depvar, covars, data)
 + {
 +   combn_list &lt;- list()
@@ -387,14 +387,14 @@ R&gt; combn_models &lt;- function(depvar, covars, data)
 
 
 
-```r
+``` r
 R&gt; models_list &lt;- combn_models(depvar = depvar,  covars = covars, data = flights)
 ```
 
 How many models did we fit?
 
 
-```r
+``` r
 R&gt; length(models_list)
 ```
 
@@ -405,7 +405,7 @@ R&gt; length(models_list)
 And what did we get? A glimpse at the first list element:
 
 
-```r
+``` r
 R&gt; models_list[[1]]
 ```
 
@@ -416,7 +416,7 @@ R&gt; models_list[[1]]
    
    Coefficients:
    (Intercept)    dep_delay  
-        -5.857        1.026
+        -5.827        1.023
 ```
 
 
@@ -461,28 +461,28 @@ Luckily, these models all work similarly from a programming experience - once yo
 **Logistic regression**
 
 
-```r
+``` r
 R&gt; logit_out &lt;- stats::glm(am ~ cyl + hp + wt, data = mtcars, family = binomial)
 ```
 
 **Generalized additive model regression**
 
 
-```r
+``` r
 R&gt; gam_out &lt;- mgcv::gam(mpg ~ s(disp) + s(wt), data = mtcars)
 ```
 
 **Penalized (here: lasso) regression**
 
 
-```r
+``` r
 R&gt; lasso_out &lt;- glmnet(as.matrix(mtcars[-1]), mtcars[,1], standardize = TRUE, alpha  = 1)
 ```
 
 **Multilevel model with random intercepts**
 
 
-```r
+``` r
 R&gt; library(lme4)
 R&gt; ml_out &lt;- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum), data = flights)
 ```
@@ -556,7 +556,7 @@ R&gt; ml_out &lt;- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum
 
 .pull-left-center[
 &lt;div align="center"&gt;
-&lt;img src="pics/nested-models-chen.png" width=600&gt;
+&lt;img src="pics/nested-models-chen.png" width=500&gt;
 &lt;/div&gt;
 `Credit` Chen 2010, [The Effect of Electoral Geography on Pork Barreling in Bicameral Legislatures](https://www.jstor.org/stable/25652208)
 ]
@@ -585,8 +585,8 @@ R&gt; ml_out &lt;- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum
 
 .pull-right[
 &lt;div align="center"&gt;
-&lt;img src="pics/multiverse-analysis-1.png" width=450&gt;
-&lt;img src="pics/multimodel-analysis.png" width=230&gt;
+&lt;img src="pics/multiverse-analysis-1.png" width=500&gt;
+&lt;!--&lt;img src="pics/multimodel-analysis.png" width=230&gt;--&gt;
 &lt;/div&gt;
 ]
 
@@ -657,7 +657,7 @@ When estimating a model, we usually estimate parameters (or simulate distributio
 .pull-right-wide2[
 
 
-```r
+``` r
 summary(model_out)
 
 Call:
@@ -697,7 +697,7 @@ When estimating a model, we usually estimate parameters (or simulate distributio
 .pull-right-wide2[
 
 
-```r
+``` r
 summary(model_out)
 
 Call:
@@ -739,7 +739,7 @@ When estimating a model, we usually estimate parameters (or simulate distributio
 .pull-right-wide2[
 
 
-```r
+``` r
 summary(model_out)
 
 Call:
@@ -782,7 +782,7 @@ When estimating a model, we usually estimate parameters (or simulate distributio
 .pull-right-wide2[
 
 
-```r
+``` r
 summary(model_out)
 
 Call:
@@ -823,7 +823,7 @@ F-statistic: 603.7 on 3 and 327342 DF,  p-value: &lt; 2.2e-16
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; model_out &lt;- lm(arr_delay ~ distance + origin, data = flights)
 R&gt; class(model_out)
 ```
@@ -832,7 +832,7 @@ R&gt; class(model_out)
    [1] "lm"
 ```
 
-```r
+``` r
 R&gt; model_out
 ```
 
@@ -859,7 +859,7 @@ R&gt; model_out
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; names(model_out)
 ```
 
@@ -885,7 +885,7 @@ R&gt; names(model_out)
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; str(model_out)
 ```
 
@@ -976,7 +976,7 @@ R&gt; str(model_out)
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; coef(model_out)
 ```
 
@@ -1000,7 +1000,7 @@ R&gt; coef(model_out)
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; coef(model_out)
 ```
 
@@ -1009,7 +1009,7 @@ R&gt; coef(model_out)
    13.414048769 -0.004045067 -2.704255237 -4.456169356
 ```
 
-```r
+``` r
 R&gt; fitted.values(model_out)[1:5]
 ```
 
@@ -1034,7 +1034,7 @@ R&gt; fitted.values(model_out)[1:5]
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; coef(model_out)
 ```
 
@@ -1043,7 +1043,7 @@ R&gt; coef(model_out)
    13.414048769 -0.004045067 -2.704255237 -4.456169356
 ```
 
-```r
+``` r
 R&gt; fitted.values(model_out)[1:5]
 ```
 
@@ -1052,7 +1052,7 @@ R&gt; fitted.values(model_out)[1:5]
    7.750955 3.230064 6.304715 4.334768 5.875538
 ```
 
-```r
+``` r
 R&gt; residuals(model_out)[1:5]
 ```
 
@@ -1078,7 +1078,7 @@ R&gt; residuals(model_out)[1:5]
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; coef(model_out)
 ```
 
@@ -1087,7 +1087,7 @@ R&gt; coef(model_out)
    13.414048769 -0.004045067 -2.704255237 -4.456169356
 ```
 
-```r
+``` r
 R&gt; fitted.values(model_out)[1:5]
 ```
 
@@ -1096,7 +1096,7 @@ R&gt; fitted.values(model_out)[1:5]
    7.750955 3.230064 6.304715 4.334768 5.875538
 ```
 
-```r
+``` r
 R&gt; residuals(model_out)[1:5]
 ```
 
@@ -1105,7 +1105,7 @@ R&gt; residuals(model_out)[1:5]
      3.249045  16.769936  26.695285 -22.334768 -30.875538
 ```
 
-```r
+``` r
 R&gt; model.matrix(model_out) %&gt;% head(4)
 ```
 
@@ -1133,7 +1133,7 @@ R&gt; model.matrix(model_out) %&gt;% head(4)
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; summary(model_out)
 ```
 
@@ -1175,7 +1175,7 @@ R&gt; summary(model_out)
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; class(summary(model_out))
 ```
 
@@ -1199,7 +1199,7 @@ R&gt; class(summary(model_out))
 .pull-right-wide[
 
 
-```r
+``` r
 R&gt; str(summary(model_out))
 ```
 
@@ -1306,7 +1306,7 @@ There are three key `broom` verbs that you need to learn.&lt;sup&gt;1&lt;/sup&gt
 `broom`'s `tidy()` function extracts the coefficient block (the model component) together with inferential statistics:
 
 
-```r
+``` r
 R&gt; broom::tidy(model_out, conf.int = TRUE, conf.level = 0.95)
 ```
 
@@ -1332,7 +1332,7 @@ What exactly is extracted depends on the model type. You can learn more about th
 `broom`'s `glance()` function extracts summary statistics of the model and provides them in a single-row `tibble`: 
 
 
-```r
+``` r
 R&gt; broom::glance(model_out)
 ```
 
@@ -1354,7 +1354,7 @@ R&gt; broom::glance(model_out)
   - standard errors of fitted values (`.se.fit`; optional)
 
 
-```r
+``` r
 R&gt; broom::augment(model_out, se_fit = TRUE) %&gt;% head(3)
 ```
 
@@ -1387,7 +1387,7 @@ The true power of broom unfolds in settings where you want to combine results fr
 **Step 4 (continuing the analysis from above): Extract results from all models**
 
 
-```r
+``` r
 R&gt; models_broom &lt;- map(models_list, broom::tidy)
 R&gt; models_broom[[1]] # inspect one list entry
 ```
@@ -1396,14 +1396,14 @@ R&gt; models_broom[[1]] # inspect one list entry
    # A tibble: 2 × 5
      term        estimate std.error statistic   p.value
      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-   1 (Intercept)    -5.86   0.198       -29.6 5.79e-185
-   2 dep_delay       1.03   0.00484     212.  0
+   1 (Intercept)    -5.83   0.191       -30.5 2.25e-195
+   2 dep_delay       1.02   0.00439     233.  0
 ```
 
 Next, let's merge them all into one data frame:
 
 
-```r
+``` r
 R&gt; models_broom_df &lt;- map_dfr(models_broom, rbind)
 ```
 
@@ -1413,7 +1413,7 @@ R&gt; models_broom_df &lt;- map_dfr(models_broom, rbind)
 **Step 5: Summarize the estimates for subset of key predictors**
 
 
-```r
+``` r
 R&gt; models_broom_df %&gt;% 
 +   filter(!str_detect(term, "Intercept|carrier")) %&gt;%
 +   ggplot(aes(estimate)) + 
@@ -1423,7 +1423,7 @@ R&gt; models_broom_df %&gt;%
 +   theme_minimal()
 ```
 
-&lt;img src="09-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="07-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -1457,7 +1457,7 @@ background-color: #000000
 
 - Hardly anybody will read your code. Most stakeholders will not even be able to understand what you've done.
 - Not all components of your model are equally relevant.
-- Good communication of your model can save a lot of time a space.
+- Good communication of your model can save a lot of time and space.
 ]
 
 .pull-right[
@@ -1511,7 +1511,7 @@ There are three key `modelsummary` verbs that you need to learn.&lt;sup&gt;1&lt;
 
 - `modelsummary()` takes one or several models as input. Multiple models are provided as (optionally named) list.
 - The extraction of information (estimates, standard errors, model summaries etc.) is taken care of by the function.
-- On this slide you see how `modelsummary()` generates content ready to be rendered as HTML table. With the `output` argument, we can also ask the function to creat `.tex`, `.rmd`, `.txt`, `.png`, and `.jpg`.
+- On this slide you see how `modelsummary()` generates content ready to be rendered as HTML table. With the `output` argument, we can also ask the function to create `.tex`, `.rmd`, `.txt`, `.png`, and `.jpg`.
 - Although the defaults are good, be sure to refine the table before publishing it.
 
 ]
@@ -1521,107 +1521,521 @@ There are three key `modelsummary` verbs that you need to learn.&lt;sup&gt;1&lt;
 
 
 
-
-```r
-R&gt; modelsummary(list(model1_out, model2_out, model3_out))
+``` r
+R&gt; modelsummary(list(model1_out, model2_out, model3_out), output = "gt")
 ```
 
-&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  (1) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;   (2) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;   (3) &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −5.899 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 10.829 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −3.213 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.033) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.136) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.056) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dep_delay &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.019 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.018 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.001) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; (0.001) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; distance &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −0.004 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −0.003 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;box-shadow: 0px 1.5px"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt; (0.000) &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt; (0.000) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 327346 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 327346 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 327346 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.837 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.004 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.839 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.837 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.004 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.839 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AIC &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2822272.7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3414551.8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2818708.3 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; BIC &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2822304.8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3414583.9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2818751.1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Log.Lik. &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −1411133.361 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −1707272.917 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −1409350.174 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1679228.282 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1257.762 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 850601.918 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 18.03 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 44.55 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 17.93 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<div id="ovgnroiygk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ovgnroiygk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ovgnroiygk thead, #ovgnroiygk tbody, #ovgnroiygk tfoot, #ovgnroiygk tr, #ovgnroiygk td, #ovgnroiygk th {
+  border-style: none;
+}
+
+#ovgnroiygk p {
+  margin: 0;
+  padding: 0;
+}
+
+#ovgnroiygk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ovgnroiygk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ovgnroiygk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ovgnroiygk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ovgnroiygk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ovgnroiygk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ovgnroiygk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ovgnroiygk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ovgnroiygk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ovgnroiygk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ovgnroiygk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ovgnroiygk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ovgnroiygk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ovgnroiygk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ovgnroiygk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ovgnroiygk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ovgnroiygk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ovgnroiygk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ovgnroiygk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ovgnroiygk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ovgnroiygk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ovgnroiygk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ovgnroiygk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ovgnroiygk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ovgnroiygk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ovgnroiygk .gt_left {
+  text-align: left;
+}
+
+#ovgnroiygk .gt_center {
+  text-align: center;
+}
+
+#ovgnroiygk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ovgnroiygk .gt_font_normal {
+  font-weight: normal;
+}
+
+#ovgnroiygk .gt_font_bold {
+  font-weight: bold;
+}
+
+#ovgnroiygk .gt_font_italic {
+  font-style: italic;
+}
+
+#ovgnroiygk .gt_super {
+  font-size: 65%;
+}
+
+#ovgnroiygk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ovgnroiygk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ovgnroiygk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ovgnroiygk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ovgnroiygk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ovgnroiygk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ovgnroiygk .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=" "> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(1)">(1)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(2)">(2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(3)">(3)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers=" " class="gt_row gt_left">(Intercept)</td>
+<td headers="(1)" class="gt_row gt_center">-5.899</td>
+<td headers="(2)" class="gt_row gt_center">10.829</td>
+<td headers="(3)" class="gt_row gt_center">-3.213</td></tr>
+    <tr><td headers=" " class="gt_row gt_left"></td>
+<td headers="(1)" class="gt_row gt_center">(0.033)</td>
+<td headers="(2)" class="gt_row gt_center">(0.136)</td>
+<td headers="(3)" class="gt_row gt_center">(0.056)</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">dep_delay</td>
+<td headers="(1)" class="gt_row gt_center">1.019</td>
+<td headers="(2)" class="gt_row gt_center"></td>
+<td headers="(3)" class="gt_row gt_center">1.018</td></tr>
+    <tr><td headers=" " class="gt_row gt_left"></td>
+<td headers="(1)" class="gt_row gt_center">(0.001)</td>
+<td headers="(2)" class="gt_row gt_center"></td>
+<td headers="(3)" class="gt_row gt_center">(0.001)</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">distance</td>
+<td headers="(1)" class="gt_row gt_center"></td>
+<td headers="(2)" class="gt_row gt_center">-0.004</td>
+<td headers="(3)" class="gt_row gt_center">-0.003</td></tr>
+    <tr><td headers=" " class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td headers="(1)" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td headers="(2)" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.000)</td>
+<td headers="(3)" class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.000)</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">Num.Obs.</td>
+<td headers="(1)" class="gt_row gt_center">327346</td>
+<td headers="(2)" class="gt_row gt_center">327346</td>
+<td headers="(3)" class="gt_row gt_center">327346</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">R2</td>
+<td headers="(1)" class="gt_row gt_center">0.837</td>
+<td headers="(2)" class="gt_row gt_center">0.004</td>
+<td headers="(3)" class="gt_row gt_center">0.839</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">R2 Adj.</td>
+<td headers="(1)" class="gt_row gt_center">0.837</td>
+<td headers="(2)" class="gt_row gt_center">0.004</td>
+<td headers="(3)" class="gt_row gt_center">0.839</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">AIC</td>
+<td headers="(1)" class="gt_row gt_center">2822272.7</td>
+<td headers="(2)" class="gt_row gt_center">3414551.8</td>
+<td headers="(3)" class="gt_row gt_center">2818708.3</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">BIC</td>
+<td headers="(1)" class="gt_row gt_center">2822304.8</td>
+<td headers="(2)" class="gt_row gt_center">3414583.9</td>
+<td headers="(3)" class="gt_row gt_center">2818751.1</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">Log.Lik.</td>
+<td headers="(1)" class="gt_row gt_center">-1411133.361</td>
+<td headers="(2)" class="gt_row gt_center">-1707272.917</td>
+<td headers="(3)" class="gt_row gt_center">-1409350.174</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">F</td>
+<td headers="(1)" class="gt_row gt_center">1679228.282</td>
+<td headers="(2)" class="gt_row gt_center">1257.762</td>
+<td headers="(3)" class="gt_row gt_center">850601.918</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">RMSE</td>
+<td headers="(1)" class="gt_row gt_center">18.03</td>
+<td headers="(2)" class="gt_row gt_center">44.55</td>
+<td headers="(3)" class="gt_row gt_center">17.93</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
 
 ]
 
@@ -1640,7 +2054,7 @@ R&gt; modelsummary(list(model1_out, model2_out, model3_out))
 .pull-right-vwide[
 
 
-```r
+``` r
 R&gt; # estimate three toy models
 R&gt; model1_out &lt;- lm(arr_delay ~ dep_delay, data = flights)
 R&gt; model2_out &lt;- lm(arr_delay ~ distance, data = flights)
@@ -1652,40 +2066,478 @@ R&gt; modelsummary(models,
 +              estimate = "{estimate} [{conf.low}, {conf.high}]",
 +              statistic = NULL,
 +              gof_omit = ".+",
-+              title = "Linear regression of flight delay at arrival (in mins)") 
++              title = "Linear regression of flight delay at arrival (in mins)",
++              output = "gt") 
 ```
 
-&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
-&lt;caption&gt;Linear regression of flight delay at arrival (in mins)&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  (1) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;   (2) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;   (3) &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −5.899 [−5.964, −5.835] &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 10.829 [10.564, 11.095] &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −3.213 [−3.322, −3.104] &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dep_delay &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.019 [1.018, 1.021] &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.018 [1.017, 1.020] &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; distance &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −0.004 [−0.004, −0.004] &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; −0.003 [−0.003, −0.002] &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<div id="cypwzbsihm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cypwzbsihm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#cypwzbsihm thead, #cypwzbsihm tbody, #cypwzbsihm tfoot, #cypwzbsihm tr, #cypwzbsihm td, #cypwzbsihm th {
+  border-style: none;
+}
+
+#cypwzbsihm p {
+  margin: 0;
+  padding: 0;
+}
+
+#cypwzbsihm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cypwzbsihm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cypwzbsihm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cypwzbsihm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cypwzbsihm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cypwzbsihm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cypwzbsihm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cypwzbsihm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cypwzbsihm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cypwzbsihm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cypwzbsihm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cypwzbsihm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cypwzbsihm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cypwzbsihm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cypwzbsihm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cypwzbsihm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cypwzbsihm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cypwzbsihm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cypwzbsihm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cypwzbsihm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cypwzbsihm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cypwzbsihm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cypwzbsihm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cypwzbsihm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cypwzbsihm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cypwzbsihm .gt_left {
+  text-align: left;
+}
+
+#cypwzbsihm .gt_center {
+  text-align: center;
+}
+
+#cypwzbsihm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cypwzbsihm .gt_font_normal {
+  font-weight: normal;
+}
+
+#cypwzbsihm .gt_font_bold {
+  font-weight: bold;
+}
+
+#cypwzbsihm .gt_font_italic {
+  font-style: italic;
+}
+
+#cypwzbsihm .gt_super {
+  font-size: 65%;
+}
+
+#cypwzbsihm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cypwzbsihm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cypwzbsihm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cypwzbsihm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cypwzbsihm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cypwzbsihm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cypwzbsihm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  &lt;caption class='gt_caption'&gt;Linear regression of flight delay at arrival (in mins)&lt;/caption&gt;
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=" "> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(1)">(1)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(2)">(2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="(3)">(3)</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers=" " class="gt_row gt_left">(Intercept)</td>
+<td headers="(1)" class="gt_row gt_center">-5.899 [-5.964, -5.835]</td>
+<td headers="(2)" class="gt_row gt_center">10.829 [10.564, 11.095]</td>
+<td headers="(3)" class="gt_row gt_center">-3.213 [-3.322, -3.104]</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">dep_delay</td>
+<td headers="(1)" class="gt_row gt_center">1.019 [1.018, 1.021]</td>
+<td headers="(2)" class="gt_row gt_center"></td>
+<td headers="(3)" class="gt_row gt_center">1.018 [1.017, 1.020]</td></tr>
+    <tr><td headers=" " class="gt_row gt_left">distance</td>
+<td headers="(1)" class="gt_row gt_center"></td>
+<td headers="(2)" class="gt_row gt_center">-0.004 [-0.004, -0.004]</td>
+<td headers="(3)" class="gt_row gt_center">-0.003 [-0.003, -0.002]</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
 ]
 
 ---
@@ -1708,7 +2560,7 @@ In any case, do invest some time in learning the function's options and in actua
 
 .pull-right-small[
 
-```r
+``` r
 R&gt; modelsummary(
 +   models,
 +   output = "default",
@@ -1811,11 +2663,11 @@ R&gt; modelsummary(
 
 .pull-right-wide[
 
-```r
+``` r
 R&gt; modelplot(model_out)
 ```
 
-&lt;img src="09-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="07-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1833,7 +2685,7 @@ R&gt; modelplot(model_out)
 .pull-right-vwide[
 
 
-```r
+``` r
 R&gt; cm &lt;- c("distance" = "Distance", 
 +         "originLGA" = "Origin: LGA", 
 +         "originJFK" = "Origin: JFK")
@@ -1847,7 +2699,7 @@ R&gt; modelplot(model_out,
 +   theme_minimal()
 ```
 
-&lt;img src="09-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
+&lt;img src="07-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1880,7 +2732,7 @@ R&gt; modelplot(model_out,
 **Rescaling (1 unit = 1000 miles)** 
 
 
-```r
+``` r
 R&gt; # rescale continuous variable
 R&gt; flights$distance1kmiles &lt;- flights$distance/1000
 R&gt; model_out_kmiles &lt;- lm(arr_delay ~ 
@@ -1902,7 +2754,7 @@ R&gt; modelplot(model_out_kmiles)
 **Standardization (1 unit = 1 s.d. on the covariate)** 
 
 
-```r
+``` r
 R&gt; # rescale continuous variable
 R&gt; flights$distance_std &lt;- standardize(flights$distance)
 R&gt; model_out_std &lt;- lm(arr_delay ~ 
@@ -2085,6 +2937,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
