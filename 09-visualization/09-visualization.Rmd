@@ -119,14 +119,12 @@ name: whyviz
 # ... but you'll be getting this
 
 .pull-left[
-<br>
 <div align="center">
 <img src="pics/movie-rankings-1.png" width=500>
 </div>
 ]
 
 .pull-right[
-<br>
 <div align="center">
 <img src="pics/simpsons-imdb.png" width=500>
 </div>
@@ -186,7 +184,7 @@ name: whyviz
 - Fun fact: this is what doing good data viz gives you:
 
 <div align="center">
-<img src="pics/john-snow-pub.jpeg" width=250>
+<img src="pics/john-snow-pub.jpeg" width=225>
 </div>
 ]
 
@@ -198,15 +196,14 @@ name: whyviz
 
 .pull-left-wide[
 <div align="center">
-<br><br><br>
-<img src="pics/nightingales-rose.jpeg" width=800>
+<br><br>
+<img src="pics/nightingales-rose.jpeg" width=700>
 </div>
 ]
 
 
 .pull-right-small[
 - One of the most influential graphs is by [Florence Nightingale](https://en.wikipedia.org/wiki/Florence_Nightingale), statistician and founder of modern nursing.
-- She pioneered in using graphs to communicate data and to ease drawing conclusions.
 - Nightingale's Rose, a polar area diagram, illustrates seasonal sources of soldier mortality in the field hospital Nightingale managed during the Crimean War and highlights the role epidemic diseases. 
 - Her work revolutionized points hygiene and other practices in hospitals, ultimately saving millions of lives.
 ]
@@ -217,8 +214,8 @@ name: whyviz
 
 .pull-left-wide[
 <div align="center">
-<br>
-<img src="pics/gelman-unwin-nightingale.png" width=800>
+<br><br>
+<img src="pics/gelman-unwin-nightingale.png" width=700>
 </div>
 ]
 
@@ -1025,8 +1022,8 @@ Before you start plotting, ask yourself:
 .pull-right[
 <div align="center">
 <br>
-<img src="pics/temp-ridgeline-1.png" width=500>
-<img src="pics/mountain-ridges.jpeg" width=500>
+<img src="pics/temp-ridgeline-1.png" width=480>
+<img src="pics/mountain-ridges.jpeg" width=480>
 
 </div>
 ]
@@ -1528,9 +1525,9 @@ name: rules
 
 .pull-left[
 
-"Visualization is surprisingly difficult. Even the most simple matters can easily go wrong."
+> "Visualization is surprisingly difficult. Even the most simple matters can easily go wrong."
 
-"No matter how clever the choice of the information, and no matter how technologically impressive the encoding, a visualization fails if the decoding fails."
+> "No matter how clever the choice of the information, and no matter how technologically impressive the encoding, a visualization fails if the decoding fails."
 
 <br>
 
@@ -1545,11 +1542,11 @@ name: rules
 --
 
 .pull-right[
-"Although nothing can replace a good graphical idea applied to an interesting set of numbers, editing and revision are as essential to sound graphical work as they are to writing."
+> "Although nothing can replace a good graphical idea applied to an interesting set of numbers, editing and revision are as essential to sound graphical work as they are to writing."
 
-"Design cannot rescue failed content."
+> "Design cannot rescue failed content."
 
-"Above all else show the data."
+> "Above all else show the data."
 
 <div align="right"><i>Edward Tufte</i></div>
 
@@ -2132,7 +2129,7 @@ name: bestgraph
 
 ### Assignment
 
-Assignment 4 is about to go online. Check it out and start plotting!
+Assignment 4 is online. Check it out and start plotting!
 
 ### Next lecture
 

@@ -8,7 +8,9 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="simons-touch.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <link rel="stylesheet" href="../simons-touch.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -18,13 +20,13 @@ class: center, middle, inverse, title-slide
 # Introduction to Data Science
 ]
 .subtitle[
-## Session 10: Visualization
+## Session 9: Visualization
 ]
 .author[
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-24">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -105,14 +107,12 @@ name: whyviz
 # ... but you'll be getting this
 
 .pull-left[
-&lt;br&gt;
 &lt;div align="center"&gt;
 &lt;img src="pics/movie-rankings-1.png" width=500&gt;
 &lt;/div&gt;
 ]
 
 .pull-right[
-&lt;br&gt;
 &lt;div align="center"&gt;
 &lt;img src="pics/simpsons-imdb.png" width=500&gt;
 &lt;/div&gt;
@@ -172,7 +172,7 @@ name: whyviz
 - Fun fact: this is what doing good data viz gives you:
 
 &lt;div align="center"&gt;
-&lt;img src="pics/john-snow-pub.jpeg" width=250&gt;
+&lt;img src="pics/john-snow-pub.jpeg" width=225&gt;
 &lt;/div&gt;
 ]
 
@@ -184,15 +184,14 @@ name: whyviz
 
 .pull-left-wide[
 &lt;div align="center"&gt;
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="pics/nightingales-rose.jpeg" width=800&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="pics/nightingales-rose.jpeg" width=700&gt;
 &lt;/div&gt;
 ]
 
 
 .pull-right-small[
 - One of the most influential graphs is by [Florence Nightingale](https://en.wikipedia.org/wiki/Florence_Nightingale), statistician and founder of modern nursing.
-- She pioneered in using graphs to communicate data and to ease drawing conclusions.
 - Nightingale's Rose, a polar area diagram, illustrates seasonal sources of soldier mortality in the field hospital Nightingale managed during the Crimean War and highlights the role epidemic diseases. 
 - Her work revolutionized points hygiene and other practices in hospitals, ultimately saving millions of lives.
 ]
@@ -203,8 +202,8 @@ name: whyviz
 
 .pull-left-wide[
 &lt;div align="center"&gt;
-&lt;br&gt;
-&lt;img src="pics/gelman-unwin-nightingale.png" width=800&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="pics/gelman-unwin-nightingale.png" width=700&gt;
 &lt;/div&gt;
 ]
 
@@ -1011,8 +1010,8 @@ Before you start plotting, ask yourself:
 .pull-right[
 &lt;div align="center"&gt;
 &lt;br&gt;
-&lt;img src="pics/temp-ridgeline-1.png" width=500&gt;
-&lt;img src="pics/mountain-ridges.jpeg" width=500&gt;
+&lt;img src="pics/temp-ridgeline-1.png" width=480&gt;
+&lt;img src="pics/mountain-ridges.jpeg" width=480&gt;
 
 &lt;/div&gt;
 ]
@@ -1514,9 +1513,9 @@ name: rules
 
 .pull-left[
 
-"Visualization is surprisingly difficult. Even the most simple matters can easily go wrong."
+&gt; "Visualization is surprisingly difficult. Even the most simple matters can easily go wrong."
 
-"No matter how clever the choice of the information, and no matter how technologically impressive the encoding, a visualization fails if the decoding fails."
+&gt; "No matter how clever the choice of the information, and no matter how technologically impressive the encoding, a visualization fails if the decoding fails."
 
 &lt;br&gt;
 
@@ -1531,11 +1530,11 @@ name: rules
 --
 
 .pull-right[
-"Although nothing can replace a good graphical idea applied to an interesting set of numbers, editing and revision are as essential to sound graphical work as they are to writing."
+&gt; "Although nothing can replace a good graphical idea applied to an interesting set of numbers, editing and revision are as essential to sound graphical work as they are to writing."
 
-"Design cannot rescue failed content."
+&gt; "Design cannot rescue failed content."
 
-"Above all else show the data."
+&gt; "Above all else show the data."
 
 &lt;div align="right"&gt;&lt;i&gt;Edward Tufte&lt;/i&gt;&lt;/div&gt;
 
@@ -1742,7 +1741,7 @@ class: smalltext
 .pull-left[
 ### Start with data and aesthetics&lt;sup&gt;1&lt;/sup&gt;
 
-```r
+``` r
 *R&gt; ggplot(data = mpg,
 *+        mapping = aes(x = displ,
 *+                      y = hwy,
@@ -1751,7 +1750,7 @@ class: smalltext
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-1-1.png)
+![](09-visualization_files/figure-html/mpg-layers-1-1.png)
 ]
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt;This example is borrowed from [Andrew Heiss](https://datavizs21.classes.andrewheiss.com/content/).]
@@ -1763,7 +1762,7 @@ class: smalltext
 .pull-left[
 ### Add a point geom
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1773,7 +1772,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-2-1.png)
+![](09-visualization_files/figure-html/mpg-layers-2-1.png)
 ]
 
 
@@ -1783,7 +1782,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Add a smooth geom
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1794,7 +1793,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-3-1.png)
+![](09-visualization_files/figure-html/mpg-layers-3-1.png)
 ]
 
 ---
@@ -1803,7 +1802,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Make it straight
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1814,7 +1813,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-4-1.png)
+![](09-visualization_files/figure-html/mpg-layers-4-1.png)
 ]
 
 
@@ -1824,7 +1823,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Use a viridis color scale
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1836,7 +1835,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-5-1.png)
+![](09-visualization_files/figure-html/mpg-layers-5-1.png)
 ]
 
 
@@ -1846,7 +1845,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Facet by drive
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1859,7 +1858,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-6-1.png)
+![](09-visualization_files/figure-html/mpg-layers-6-1.png)
 ]
 
 
@@ -1869,7 +1868,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Add labels
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1886,7 +1885,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-7-1.png)
+![](09-visualization_files/figure-html/mpg-layers-7-1.png)
 ]
 
 
@@ -1896,7 +1895,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Add a theme
 
-```r
+``` r
 R&gt; ggplot(data = mpg,
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1914,7 +1913,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-8-1.png)
+![](09-visualization_files/figure-html/mpg-layers-8-1.png)
 ]
 
 
@@ -1925,7 +1924,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Modify the theme
 
-```r
+``` r
 R&gt; ggplot(data = mpg, 
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1945,7 +1944,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-9-1.png)
+![](09-visualization_files/figure-html/mpg-layers-9-1.png)
 ]
 
 
@@ -1955,7 +1954,7 @@ R&gt; ggplot(data = mpg,
 .pull-left[
 ### Finished!
 
-```r
+``` r
 R&gt; ggplot(data = mpg, 
 +        mapping = aes(x = displ,
 +                      y = hwy,
@@ -1975,7 +1974,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](10-visualization_files/figure-html/mpg-layers-finished-1.png)
+![](09-visualization_files/figure-html/mpg-layers-finished-1.png)
 ]
 
 
@@ -2128,7 +2127,7 @@ name: bestgraph
 
 ### Assignment
 
-Assignment 4 is about to go online. Check it out and start plotting!
+Assignment 4 is online. Check it out and start plotting!
 
 ### Next lecture
 
@@ -2248,6 +2247,35 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
+<style>
+  .logo {
+    background-image: url("../hertieschool-neg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 150px;
+    height: 128px;
+    z-index: 0;
+  }
+</style>
+  
+  <script>
+  document
+.querySelectorAll(
+  '.remark-slide-content' +
+    ':not(.title-slide)' +
+    ':not(.inverse)' +
+	
+    // add additional classes to exclude here, e.g.
+  // ':not(.inverse)' +
+    ':not(.hide-logo)'
+)
+.forEach(el => {
+  el.innerHTML += '<div class="logo"></div>';
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
