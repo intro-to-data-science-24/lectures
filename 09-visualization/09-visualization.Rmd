@@ -1620,6 +1620,63 @@ class: smalltext
 .footnote[<sup>1</sup>Follow the links for more information.]
 
 
+
+---
+# Junk Charts<sup>1</sup>
+
+<div align="center">
+<img src="pics/junkcharts-1.png" height=480>
+</div>
+
+.footnote[<sup>1</sup>[Junk Charts](https://junkcharts.typepad.com/) is a blog by Kaiser Fung that critiques data visualizations. [Source](https://junkcharts.typepad.com/junk_charts/bar_chart/) of shown graph.]
+
+---
+# Junk Charts<sup>1</sup>
+
+<div align="center">
+<img src="pics/junkcharts-1a.jpg" height=480>
+</div>
+
+.footnote[<sup>1</sup>[Junk Charts](https://junkcharts.typepad.com/) is a blog by Kaiser Fung that critiques data visualizations. [Source](https://junkcharts.typepad.com/junk_charts/bar_chart/) of shown graph.]
+
+
+---
+# Junk Charts<sup>1</sup>
+
+<div align="center">
+<img src="pics/junkcharts-2.png" height=500>
+</div>
+
+.footnote[<sup>1</sup>[Junk Charts](https://junkcharts.typepad.com/) is a blog by Kaiser Fung that critiques data visualizations. [Source](https://junkcharts.typepad.com/junk_charts/2024/08/using-disaggregation-in-dataviz.html) of shown graph.]
+
+---
+# Junk Charts<sup>1</sup>
+
+<div align="center">
+<img src="pics/junkcharts-2a.png" height=500>
+</div>
+
+.footnote[<sup>1</sup>[Junk Charts](https://junkcharts.typepad.com/) is a blog by Kaiser Fung that critiques data visualizations. [Source](https://junkcharts.typepad.com/junk_charts/2024/08/using-disaggregation-in-dataviz.html) of shown graph.]
+
+
+
+
+---
+# FiveThirtyEight 2024 election forecast
+
+.pull-center[
+<div align="center">
+<br>
+<img src="pics/538-2024.png" height=500>
+</div>
+`Source` [FiveThirtyEight](https://projects.fivethirtyeight.com/2024-election-forecast/)
+]
+
+
+
+
+
+
 <!-- ############################################ -->
 ---
 class: inverse, center, middle
