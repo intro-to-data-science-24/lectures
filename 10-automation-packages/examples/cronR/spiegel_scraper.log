@@ -5437,3 +5437,220 @@ Das folgende Objekt ist maskiert 'package:tidyr':
 
     extract
 
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+Fehler in file(file, ifelse(append, "a", "w")) : 
+  kann Verbindung nicht "offnen
+Ruft auf: %>% -> write -> cat -> file
+Zus"atzlich: Warnmeldung:
+In file(file, ifelse(append, "a", "w")) :
+  kann Datei 'spiegelHeadlines/headlines-spiegel-2024-11-10-23-57-03.547729.html' nicht "offnen: No such file or directory
+Ausf"uhrung angehalten
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.4     v readr     2.1.5
+v forcats   1.0.0     v stringr   1.5.1
+v ggplot2   3.5.1     v tibble    3.2.1
+v lubridate 1.9.3     v tidyr     1.3.1
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attache Paket: 'magrittr'
+
+Das folgende Objekt ist maskiert 'package:purrr':
+
+    set_names
+
+Das folgende Objekt ist maskiert 'package:tidyr':
+
+    extract
+

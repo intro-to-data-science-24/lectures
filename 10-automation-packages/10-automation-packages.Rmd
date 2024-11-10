@@ -335,7 +335,7 @@ p <- ggplot(lotr_dat, aes(x = Race, weight = Words)) +
 ### Motivation and usage
 - The `source()` function reads and parses R code from a file or connection. 
 - We can build a pipeline by sourcing scripts sequentially.
-- This pipeline is usually stored in a "master" script.
+- This pipeline is usually stored in a "master/main" script.
 - The removal of previous work is optional and maybe redundant. Often the data is overwritten by default.
 - It is recommended that the individual scripts are (partial) standalones, i.e. that they import all data they need by default (loading the packages could be considered an exception). 
 - Note that as long as the environment is not reset, it remains intact across scripts, which is a potential source of error and confusion.
@@ -511,12 +511,10 @@ clean:
 
 .pull-left-small[
 
-.footnote[<sup>1</sup>While the basic syntax is simple (see right), the devil's in the detail. Check out resources listed on the next slide if you want to learn more.]
-
 ### Getting Make to run
 
 - Using the command line, go into the directory for your project.
-- Create the `Makefile` file.<sup>1</sup>
+- Create the `Makefile` file.
 - The most basic Make commands are `make all` and `make clean` which builds (or deletes) all output as specified in the script.
 ]
 
@@ -720,7 +718,7 @@ name: rpackages
 .pull-left[
 ### The state of the R package ecosystem
 
-- As of November 2021, the CRAN package repository features more than 18,000 packages.
+- As of November 2024, the CRAN package repository features more than 21,600 packages.
 - Many, many more are available on GitHub and other code sharing platforms.
 - R has a vivid community that continuous to create and build extensions and maintain the existing environment. Many of them have much more training and time to invest in software development.
 - So, why should we (and with that I mean YOU) write yet another R package?
@@ -883,7 +881,7 @@ The package is [real](https://cosimameyer.github.io/overviewR/) and lives on bot
 ### Idea
 
 - I'll leave you alone with that one.
-- ... but you might want to check out the [over 18k existing ones that live on CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+- ... but you might want to check out the [over 21k existing ones that live on CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html).
 
 ### Name
 
@@ -1295,7 +1293,7 @@ One more quiz to go!
 
 ### Next lecture
 
-One more session to go. We're going to talk about communication and monitoring.
+Two more sessions to go. In the next one, we're going to talk about communication and monitoring.
 
 
 
