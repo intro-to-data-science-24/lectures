@@ -75,7 +75,7 @@ library(kableExtra)
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: communication
@@ -144,7 +144,7 @@ Let's apply this to us. Data scientists communicate...
 --
 
 .pull-left-vsmall[
-### What
+## What
 - Estimates
 - Uncertainty
 - Model implications
@@ -156,7 +156,7 @@ Let's apply this to us. Data scientists communicate...
 --
 
 .pull-left-vsmall[
-### How
+## How
 - Spoken word
 - Technical reports
 - Academic papers
@@ -167,7 +167,7 @@ Let's apply this to us. Data scientists communicate...
 --
 
 .pull-left-vsmall[
-### To whom
+## To whom
 - The public
 - The media
 - Policymakers
@@ -178,7 +178,7 @@ Let's apply this to us. Data scientists communicate...
 --
 
 .pull-left-vsmall[
-### To what end
+## To what end
 - Inform
 - Influence
 - Instruct
@@ -196,7 +196,7 @@ What, how, and to what end you communicate depends on your <b>audience/stakehold
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: communication
@@ -208,13 +208,13 @@ name: communication
 # Statistical communication
 
 .pull-left[
-### <b>What</b> we communicate
+## <b>What</b> we communicate
 - The quantity of interest
 - The selection/generation of data
 - The empirical setup
 - The model mechanics and results (estimates/predictions/uncertainty)
 
-### Common challenges
+## Common challenges
 - There's epistemological and statistical uncertainty.
 - Effect sizes have implications that are often not easy to grasp.
 - Conclusions about data science output crucially hinge on the validity of design aspects, which are extremely difficult to communicate.
@@ -222,8 +222,7 @@ name: communication
 
 .pull-right-center[
 <div align="center">
-<br>
-<img src="pics/biontech-paper.png" width=370>
+<img src="pics/biontech-paper.png" width=400>
 </div>
 `Credit` [Polack et al. 2020, NEJM](https://www.nejm.org/doi/full/10.1056/nejmoa2034577)
 ]
@@ -237,7 +236,7 @@ name: communication
 .pull-left[
 
 <br><br>
-### Question to reflect on
+## Question to reflect on
 
 Thinking about the task of publicly forecasting the U.S. presidential election using polling data, what kinds of uncertainty would you have to deal with as a forecaster?
 
@@ -429,7 +428,7 @@ count: false
 # Uncertainty
 
 .pull-left[
-### What we are uncertain about
+## What we are uncertain about
 
 - **Measurement** → uncertainty in single variables
 - **Model specification** → uncertainty across multiple variables and how they connect
@@ -454,7 +453,7 @@ Depending on the empirical setup, various specific **sources of error** might en
 # Communicating uncertainty
 
 .pull-left[
-### The difficulty of communicating uncertainty
+## The difficulty of communicating uncertainty
 
 - The concept is complex. Not all people think in probabilistic terms.
 - Many humans are bad at understanding (conditional and unconditional) probabilities.
@@ -474,7 +473,7 @@ Depending on the empirical setup, various specific **sources of error** might en
 # Communicating uncertainty (cont.)
 
 .pull-left-center[
-### Visualizing uncertainty
+## Visualizing uncertainty
 
 <div align="center">
 <br>
@@ -494,7 +493,7 @@ Depending on the empirical setup, various specific **sources of error** might en
 
 
 .pull-right-center[
-### Uncertainty by numbers
+## Uncertainty by numbers
 
 <div align="center">
 <br>
@@ -502,7 +501,7 @@ Depending on the empirical setup, various specific **sources of error** might en
 </div>
 
 
-### Strategies by precision
+## Strategies by precision
 
 <div align="center">
 <br>
@@ -557,13 +556,13 @@ Depending on the empirical setup, various specific **sources of error** might en
 # Communicating data and analyses with <tt>report</tt>
 
 .pull-left-small[
-### The package
+## The package
 - The [`report`](https://easystats.github.io/report/) package (part of the [easystats](https://easystats.github.io/easystats/) project) provides verbal reports of models, tests, and data frames.
 - In doing so, it helps ensure standardization in reporting.
 ]
 
 .pull-right-wide[
-### The workflow
+## The workflow
 
 <div align="center">
 <br>
@@ -576,17 +575,17 @@ Depending on the empirical setup, various specific **sources of error** might en
 # Communicating data and analyses with <tt>report</tt>
 
 .pull-left-small[
-### The package
+## The package
 - The [`report`](https://easystats.github.io/report/) package (part of the [easystats](https://easystats.github.io/easystats/) project) provides verbal reports of models, tests, and data frames.
 - In doing so, it helps ensure standardization in reporting.
 
-### Use with care
+## Use with care
 - Fully automating this part of communication is probably not a good idea (do you enjoy talking to a bot?).
 - The output is pseudo-objective (reporting some quantities but not others).
 ]
 
 .pull-right-wide[
-### Example
+## Example
 
 ```{r, eval = F}
 library(report)
@@ -630,7 +629,7 @@ standardized version of the dataset.
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: rmarkdown
@@ -643,13 +642,13 @@ name: rmarkdown
 
 .pull-left[
 
-### When to communicate in writing
+## When to communicate in writing
 
 - For communicating to **the public and decision makers**, who want to focus on the conclusions, not the code behind the analysis.
 
 - For collaborating with **other data scientists**, who are interested in both your conclusions and how you reached them (i.e. the code).
 
-### Authoring as part of the workflow
+## Authoring as part of the workflow
 
 - Many different formats, including reports, briefs, blog posts, books, presentations, ...
 - Form follows function: the write-up tool should talk to the analytic toolset.
@@ -771,7 +770,7 @@ name: rmarkdown
 
 .pull-left[
 
-### What you already know
+## What you already know
 
 - R Markdown (and the `rmarkdown` package) helps you create dynamic analysis documents that combine code, rendered output (such as figures), and prose. 
 - You can use it to
@@ -780,7 +779,7 @@ name: rmarkdown
   - Communicate your results with others.
 - You take care of content, R Markdown of format.
 
-### More resources
+## More resources
 
 - The [official website](https://rmarkdown.rstudio.com/)
 - The [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
@@ -791,7 +790,7 @@ name: rmarkdown
 
 .pull-right[
 
-### What you probably don't know (yet)
+## What you probably don't know (yet)
 
 - R Markdown can do much more than reports. You can use it to author
   - Reports (in PDF, HTML, Word, etc.)
@@ -813,7 +812,7 @@ name: rmarkdown
 
 .pull-left[
 .pull-left-wide[
-### bookdown
+## bookdown
 - A [package](https://bookdown.org/) that facilitates writing books and long-form articles/reports with R Markdown.
 - See [here](https://bookdown.org/home/archive/) for an overview of books written with `bookdown`.
 ]
@@ -827,7 +826,7 @@ name: rmarkdown
 
 .pull-right[
 .pull-left-wide[
-### blogdown
+## blogdown
 - A [package](https://bookdown.org/yihui/blogdown/) that lets you create websites (not only blogs!) using R Markdown.
 - It integrates [Hugo
 ](https://gohugo.io/) (or other site generators).
@@ -843,7 +842,7 @@ name: rmarkdown
 .pull-left[
 .pull-left-wide[
 <br>
-### pagedown
+## pagedown
 - A [package](https://pagedown.rbind.io/) that lets you paginate the HTML output of R Markdown with CSS for print (PDF).
 - Lots of different [templates](https://github.com/rstudio/pagedown) available.
 ]
@@ -858,7 +857,7 @@ name: rmarkdown
 .pull-right[
 .pull-left-wide[
 <br>
-### xaringan
+## xaringan
 - A [package](https://github.com/yihui/xaringan) that lets you crate slideshows with [remark.js](https://remarkjs.com/) through R Markdown.
 - These slides have been created using this package.
 ]
@@ -878,7 +877,7 @@ name: rmarkdown
 
 .pull-left-wide[
 
-### What's Quarto?
+## What's Quarto?
 
 - [Quarto](https://quarto.org/) is software developed at [Posit](https://posit.co/), the company behind RStudio. 
 - It's the "next generation of R Markdown" and also built on Pandoc. If you know R Markdown well, you already know Quarto well.
@@ -887,7 +886,7 @@ name: rmarkdown
 - Quarto is still fairly new and under active development. More and more [extensions](https://quarto.org/docs/extensions/) are coming out that increase the flexibility of the suite.
 - Check out the comprehensive [guide](https://quarto.org/docs/guide/) to learn more.
 
-### Quarto and Jupyter
+## Quarto and Jupyter
 
 - Quarto's support for both Knitr and Jupyter means that you can use it to create documentation projects that contain content from both systems.
 - Something to keep in mind next semester and going forward! :)
@@ -905,7 +904,7 @@ name: rmarkdown
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: dashboards
@@ -926,7 +925,7 @@ background-color: #000000
 # What are dashboards?
 
 .pull-left-wide[
-### Yeah, what are they really?
+## Yeah, what are they really?
 - A (business or data) [dashboard](https://en.wikipedia.org/wiki/Dashboard_(business) is a GUI that provides high-level overviews of performance indicators or other quantities of interest. 
 - It's a **monitoring** (and not so much analysis) **tool**.
 - Think of dashboards as a **mash-up of data visualization and report**.
@@ -957,7 +956,7 @@ background-color: #000000
 # Why are dashboards?
 
 .pull-left[
-### Why are they a thing?
+## Why are they a thing?
 
 - There is increasing **abundance of data** (often process-generated) that cannot speak for itself.
 - If used wisely, these data can provide an **important part of business intelligence** and a basis for high-level [evidence-based decision-making](https://stephanieevergreen.com/dashboard-conversation/).
@@ -1066,7 +1065,7 @@ background-color: #000000
 # The problem(s) with dashboards
 
 .pull-left[
-### Design challenges
+## Design challenges
 
 - **They say too little.** Loss of information is [fatal](https://stephanieevergreen.com/problem-with-dashboards/) for good decision-making when aggregating results into few KPIs.
 - **They say too much** (irrelevant things). 
@@ -1079,7 +1078,7 @@ background-color: #000000
 --
 
 .pull-right[
-### Analytic challenges
+## Analytic challenges
 
 - Dashboards cater to the desire to be able to make good decisions on the basis of few selected metrics.
 - This logic reflects a **gross simplification of reality**. 
@@ -1095,7 +1094,7 @@ background-color: #000000
 ]
 
 .pull-left[
-### Checklist before you start<sup>1</sup>
+## Checklist before you start<sup>1</sup>
 
 1. Are you tackling a monitoring task that needs your data/metrics to be updated frequently?
 
@@ -1109,7 +1108,7 @@ background-color: #000000
 --
 
 .pull-right[
-### Design advice
+## Design advice
 
 - Minimize distractions.
 - Focus on meaningful quantities of interest, not the ones that look cool.
@@ -1186,7 +1185,7 @@ background-color: #000000
 
 .pull-left[
 .pull-left-vwide[
-### <tt>flexdashboard</tt> package
+## <tt>flexdashboard</tt> package
 - Overview [here](https://pkgs.rstudio.com/flexdashboard).
 - Good for easy dashboard building
 - Just a document that looks like a dashboard
@@ -1209,7 +1208,7 @@ background-color: #000000
 
 .pull-right[
 .pull-left-vwide[
-### <tt>shiny</tt> package
+## <tt>shiny</tt> package
 - Overview [here](https://shiny.rstudio.com/).
 - More complex to program, but the best option for complex apps.
 - Can implement any layout.
@@ -1235,7 +1234,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 ]
@@ -1254,7 +1253,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1272,7 +1271,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1290,7 +1289,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1309,7 +1308,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1330,7 +1329,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1351,7 +1350,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1373,7 +1372,7 @@ background-color: #000000
 # Dashboards with <tt>flexdashboard</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Use simple R Markdown to build a dashboard.
 - Arrange panels as blocks with flexible syntax.
@@ -1398,7 +1397,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Functionality
+## Functionality
 
 - Shiny's functionality is too complex and rich to introduce it on a couple of slides. Wait for the labs!
 - It certainly can do much more than dashboards.
@@ -1417,7 +1416,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Example applications
+## Example applications
 - Data explorer
 ]
 
@@ -1433,7 +1432,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Example applications
+## Example applications
 - Data explorer
 - Interactive appendix
 ]
@@ -1450,7 +1449,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Example applications
+## Example applications
 - Data explorer
 - Interactive appendix
 - Workflow apps
@@ -1468,7 +1467,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Example applications
+## Example applications
 - Data explorer
 - Interactive appendix
 - Workflow apps
@@ -1488,7 +1487,7 @@ background-color: #000000
 # Web apps with <tt>shiny</tt>
 
 .pull-left-vsmall[
-### Example applications
+## Example applications
 - Data explorer
 - Interactive appendix
 - Workflow apps
@@ -1510,7 +1509,7 @@ background-color: #000000
 # More Shiny resources
 
 .pull-left[
-### Online resources
+## Online resources
 - [Shiny official website](https://shiny.rstudio.com/)
 - [Shiny official tutorial](https://shiny.rstudio.com/tutorial/)
 - [Shiny cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
@@ -1522,10 +1521,10 @@ background-color: #000000
 ]
 
 .pull-right[
-### An overview of Shiny extensions
+## An overview of Shiny extensions
 - [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
 
-### Some highlights
+## Some highlights
 - [shinythemes](https://rstudio.github.io/shinythemes/): Altering the overall appearance of Shiny apps
 - [shinyjs](https://deanattali.com/shinyjs/): Enrich apps with JavaScript operations
 - [leaflet](https://rstudio.github.io/leaflet/): Interactive maps
@@ -1535,7 +1534,7 @@ background-color: #000000
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: science
@@ -1547,12 +1546,12 @@ name: science
 # The science of science communication
 
 .pull-left-wide[
-### Motivation
+## Motivation
 - You have learned the basic rules of good visualization and reporting, but what is the external validity of this advice?
 - How are facts and figures perceived by the public, policymakers, or even other scientists?
 - How does science communication affect attitudes and behaviors?
 
-### Show us the data
+## Show us the data
 - It turns out there's increasing evidence on how science communication is consumed by stakeholders, and to what effect. 
 - However, much more research is needed to better understand how what we do and communicate travels to stakeholders.
 - The following slides report some selected findings.
@@ -1628,7 +1627,7 @@ name: science
 
 
 
-<!-- ############################################ -->
+<!-- ########################################### -->
 ---
 class: inverse, center, middle
 name: openscience
@@ -1696,12 +1695,12 @@ name: openscience
 # The replication crisis
 
 .pull-left-wide2[
-### What the crisis is about
+## What the crisis is about
 - The finding that many scientific studies are difficult or impossible to reproduce.
 - Reproducibility is a cornerstone of science as an enterprise of knowledge generation → bad.
 
 
-### Factors fueling the replication crisis
+## Factors fueling the replication crisis
 - Solo, silo-ed investigators limited to small sample sizes
 - Wrong incentives in science
 - No pre-registration of hypotheses being tested
@@ -1725,7 +1724,7 @@ name: openscience
 # Fostering trust in science through open science
 
 .pull-left[
-### Communicating the entire workflow
+## Communicating the entire workflow
 
 - Any decision - from conceptualizing measures to formatting tables - is meaningful for your output.
   - Tiny mistakes can have massive technical consequences (→ debugging).
@@ -1747,7 +1746,7 @@ name: openscience
 # Fostering trust in science through open science
 
 .pull-left[
-### Communicating the entire workflow
+## Communicating the entire workflow
 
 - Any decision - from conceptualizing measures to formatting tables - is meaningful for your output.
   - Tiny mistakes can have massive technical consequences (→ debugging).
@@ -1770,7 +1769,7 @@ name: openscience
 # Towards open data science (cont.)
 
 .pull-left[
-### Good practice
+## Good practice
 
 - Pre-register designs `osf.io`, `aspredicted.org` 
 - Do version control `GitHub`
@@ -1794,7 +1793,7 @@ name: openscience
 # Towards open data science (cont.)
 
 .pull-left[
-### Good practice
+## Good practice
 
 - Pre-register designs `osf.io`, `aspredicted.org` 
 - Do version control `GitHub`
