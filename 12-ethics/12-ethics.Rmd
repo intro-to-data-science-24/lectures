@@ -453,7 +453,7 @@ name: principles
 ---
 # 1. Respect for persons
 
-.pull-left-wide[
+.pull-left-vwide[
 
 *Respect for persons is about treating people as autonomous and honoring their wishes.*
 
@@ -465,7 +465,7 @@ name: principles
 {{content}}
 ]
 
-.pull-right-small-center[
+.pull-right-vsmall[
 <div align="center">
 <br><br><br>
 <img src="pics/judo-bow.gif" height=300>
@@ -480,9 +480,9 @@ name: principles
 {{content}}
 
 ---
-# 2. Beneficience
+# 2. Beneficence
 
-.pull-left-wide[
+.pull-left-vwide[
 
 *Beneficence is about understanding and improving the risk/benefit proﬁle of your study, and then deciding if it strikes the right balance.*
 
@@ -494,7 +494,7 @@ name: principles
 {{content}}
 ]
 
-.pull-right-small-center[
+.pull-right-vsmall[
 <div align="center">
 <br><br><br>
 <img src="pics/help-icon.jpeg" height=300>
@@ -510,7 +510,7 @@ name: principles
 ---
 # 3. Justice
 
-.pull-left-wide[
+.pull-left-vwide[
 *Justice is about ensuring that the risks and benefits of research are distributed fairly.*
 
 - **Protection**: Vulnerable people should be protected from researchers.
@@ -519,7 +519,7 @@ name: principles
 {{content}}
 ]
 
-.pull-right-small-center[
+.pull-right-vsmall[
 <div align="center">
 <br><br><br>
 <img src="pics/compensation.png" height=300>
@@ -536,7 +536,7 @@ name: principles
 ---
 # 4. Respect for law and public interest
 
-.pull-left-wide[
+.pull-left-vwide[
 *Respect for law and public interest extends the principle of beneficience beyond specific research participants to include all relevant stakeholders.*
 
 - **Compliance**: Identify and obey relevant laws, contracts, and terms of service.
@@ -544,7 +544,7 @@ name: principles
 {{content}}
 ]
 
-.pull-right-small-center[
+.pull-right-vsmall[
 <div align="center">
 <br><br><br>
 <img src="pics/justitia.jpeg" height=300>
@@ -729,7 +729,7 @@ If obtaining full informed consent is not possible, for example, when informed c
   - Aim of the research project, timetable, researchers involved, location of the research.
   - Research design: sample, measurement instruments, experiments, etc.
   - Data use and storage concept.
-  - Information about features of the project that could be ethically relevant (usually a very long list of questions; see [here](https://www.lse.ac.uk/media-and-communications/assets/documents/research/eu-kids-online/toolkit/qualitative-research/Research-Ethics.pdf) or [here](https://www.ncl.ac.uk/media/wwwnclacuk/research/files/example-ethicsform-sexualhealth.pdf) for examples).
+  - Information about features of the project that could be ethically relevant (usually a very long list of questions; see [here](https://www.lse.ac.uk/media-and-communications/assets/documents/research/eu-kids-online/toolkit/qualitative-research/Research-Ethics.pdf) or [here](https://www.ukri.org/publications/ethics-review-example-of-checklist/) for examples).
 
 --
 
@@ -775,7 +775,7 @@ If obtaining full informed consent is not possible, for example, when informed c
 - Open to all members of the Hertie School, including students!
 - Ethics procedure mandatory for all research projects involving human subjects, **including your Master's thesis**!
 - Three stages: self-assessment, review by the Research Ethics Officer, full review by the Research Ethics Committee
-- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=28) on research ethics!
+- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=27) on research ethics!
 ]
 
 .pull-right[
@@ -820,7 +820,6 @@ name: activity
 
 
 ---
-class: inverse
 
 .pull-left[
 
