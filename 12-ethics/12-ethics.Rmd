@@ -528,7 +528,7 @@ name: principles
 --
 
 *Questions to reflect on:*
-- How makes digital research protection and equity of access easier to account for, and how could it become more difficult?
+- How does digital research make protection and equity of access easier to account for, and how could it become more difficult?
 - What does appropriate compensation entail under which circumstances?
 - What could be unintended consequences of generous compensation?
 {{content}}
