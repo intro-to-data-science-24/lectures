@@ -1120,6 +1120,17 @@ background-color: #000000
 ]
 
 
+---
+# Babe are you OK? (Andrey Vinitsky @ Turingfest)
+
+<div align="center">
+<br>
+<img src="pics/turingfest_talk_babe-are-you-ok.png" width="950"/>
+</div>
+
+`Source` [Andrey Vinitsky: Babe Are You OK? You’ve Barely Touched The Dashboard You Claimed Was Mission Critical](https://turingfest.com/videos/andrey-vinitsky-babe-are-you-ok-youve-barely-touched-the-dashboard-you-claimed-was-mission-critical/)
+
+
 
 ---
 # Dashboards in the wild: COVID-19 edition
